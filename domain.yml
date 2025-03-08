@@ -114,7 +114,7 @@ responses:
       buttons:
           - title: "Ja. Ich habe schon."
             payload: '/affirm_ticket'
-          - title: "Nein. Ich habe nicht."
+          - title: "Nein. Ich habe noch kein Ticket."
             payload: '/deny_ticket'
   utter_ticket_booked_where:
     - text: "Wo hast du die Tickets gekauft?"

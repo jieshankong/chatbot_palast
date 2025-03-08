@@ -32,11 +32,9 @@ stories:
     steps:
       - intent: show_spielzeit
       - action: action_fetch_current_show_name
-      - action: utter_show_spielzeit
       - action: utter_ticket_offer
 
   - story: show duration with show name
     steps:
       - intent: show_dauer
       - action: action_fetch_current_show_name
-      - action: utter_show_dauer

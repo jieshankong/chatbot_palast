@@ -40,7 +40,7 @@
 - ask_payment_ticketbox: 18
 - ask_payment_webshop: 6
 - ask_payment_callcenter: 17
-664
+
 # General
 - ask_directions: 36
 - ask_audiodescription: 30
@@ -84,8 +84,3 @@
 
 Gibt es für ADAC Rabatte?
 Kann ich als Studentin einen Rabatt bekommen
-
-senior, rentner, älter, ab 65
-jugendlich, unter 25, junge
-sozialhilf, arbeitslos, erwerbslos
-Palast für Alle, pfa

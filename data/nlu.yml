@@ -13,11 +13,28 @@ nlu:
 
 - regex: student_regex
   examples: |
-    - \b(student(in)?|student(en)?|azubi|azubis|schüler(in)?|studierende[r]?)\b
-
+    - \b(student(in)?|student(en)?|azubi|azubis|schüler(in)?|studierende[r]?|kind(er)?)\b
 - regex: adac_regex
   examples: |
-    - \b(adac|adac[-\s]?mitglied(schaft)?)\b  
+    - \b(adac|adac[-\s]?mitglied(schaft)?)\b
+- regex: senior_regex
+  examples: |
+    - \b(senior|rentner|älter|ab 65)\b
+- regex: young_ticket_regex
+  examples: |
+    - \b(jugendlich|unter 25|junge\w*)\b
+- regex: unemployed_regex
+  examples: |
+    - \b(sozialhilf\w*|arbeitslos\w*|erwerbslos\w*)\b
+- regex: berlin_welcome_card_regex
+  examples: |
+    - \b(berlin.*welcome.*card|berlin.*welcome|welcome.*card.*berlin)\b
+- regex: pfa_regex
+  examples: |
+    - \b(pfa|palast für alle)\b
+- regex: disable_regex
+  examples: |
+    - \b(schwerbehind\w*|schwerbesch\w*|gdb)\b
 
 - intent: greet
   examples: |
@@ -57,7 +74,6 @@ nlu:
     - bye
     - leb wohl
     - bis dann
-    - servus
     - bis zum nächsten Mal
     - man sieht sich
     - gute Nacht
@@ -119,6 +135,7 @@ nlu:
     - kein Interesse
 - intent: affirm_ticket
   examples: |
+    - Ja. Ich habe schon.
     - ja. ich habe Ticket gebucht.
     - Ja, meine Buchung wurde abgeschlossen.
     - Doch, ich habe bereits ein Ticket erworben.
@@ -134,7 +151,8 @@ nlu:
     - Sicher, das ist schon erledigt.
 - intent: deny_ticket
   examples: |
-    - nein. Ich habe noch kein Ticket.
+    - Nein. Ich habe nicht.
+    - Nein. Ich habe noch kein Ticket.
     - Nein, ich muss das noch machen.
     - Nein, ich habe noch keine Tickets gekauft.
     - Nein, das habe ich noch nicht erledigt.
@@ -202,6 +220,7 @@ nlu:
     - In der Theaterkasse.
     - Durch online.
     - Im Palast.
+    - Tickets vom Palast.
 - intent: ask_ticket_another_providers
   examples: |
     - Ich habe die Tickets nicht im Friedrichstadt-Palast gebucht.
@@ -210,6 +229,7 @@ nlu:
     - Ich habe meine Tickets woanders gebucht.
     - Ich habe die Tickets nicht im Palast gebucht.
     - Ich habe Tickets bei Eventim gebucht.
+    - Andere Anbieter.
 - intent: ask_ticket_booking
   examples: |
     - Wie bekomme ich meinen Sitzplatz?
@@ -1630,20 +1650,3 @@ nlu:
     - ermäßigte Tickets
     - Preisnachlässe
     - Vergünstigungen
-- synonym: disable
-  examples: |
-    - [Schwerbehinderung](disable)
-    - [100% Schwerbehinderung](disable)
-    - [20% Schwerbehinderung](disable)
-    - [Schwerbeschädigt](disable)
-    - [Schwerbehindertenausweis](disable)
-    - [GdB](disable)
-    - [Personen mit GdB](disable)
-    - [Besucher mit Behinderung](disable)
-    - [Menschen mit GdB](disable)
-    - [Person mit Behinderung](disable)
-    - [Person mit GdB](disable)
-    - [Behinderung](disable)
-    - [Gäste mit GdB](disable)
-    - [Gäste mit Behinderung](disable)
-    - [schwerbehinderter Mensch](disable)

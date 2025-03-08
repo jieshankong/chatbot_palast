@@ -109,14 +109,14 @@ class ActionCheckDiscount(Action):
         # If no entity found or empty after cleaning, try regex patterns
         if not discount_type:
             patterns = {
-                'adac': r'\b(adac)\b',
-                'student': r'\b(student|azubi|schüler|kind|auszub|jugendlich)\b',
-                'disable': r'\b(schwerbehinderung|behindert|gdb)\b',
-                'berlin_welcome_card': r'\b(berlin[-\s]?welcom?e[-\s]?card)\b',
-                'young_ticket': r'\b(young[-\s]?ticket)\b',
-                'senior': r'\b(senior|rentner)\b',
-                'unemployed': r'\b(arbeitslos|alg)\b',
-                'pfa': r'\b(pfa|palast[-\s]?für[-\s]?alle)\b'
+                'adac': r'\b(adac|adac[-\s]?mitglied(schaft)?)\b',
+                'student': r'\b(student(in)?|student(en)?|azubi|azubis|schüler(in)?|studierende[r]?|kind(er)?)\b',
+                'disable': r'\b(schwerbehind\w*|schwerbesch\w*|gdb)\b',
+                'berlin_welcome_card': r'\b(berlin.*welcome.*card|berlin.*welcome|welcome.*card.*berlin)\b',
+                'young_ticket': r'\b(jugendlich|unter 25|junge\w*)\b',
+                'senior': r'\b(senior|rentner|älter|ab 65)\b',
+                'unemployed': r'\b(sozialhilf\w*|arbeitslos\w*|erwerbslos\w*)\b',
+                'pfa': r'\b(pfa|palast für alle)\b'
             }
 
             for disc_type, pattern in patterns.items():
@@ -137,7 +137,6 @@ class ActionCheckDiscount(Action):
             ]
 
 
-
 class ActionCheckEvents(Action):
     def name(self) -> Text:
         return "action_check_events"
@@ -147,38 +146,78 @@ class ActionCheckEvents(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         user_date_str = tracker.get_slot("event_date")  # User-provided date
-
-        # Normalize date by replacing non-standard separators with '.'
-        user_date_str = re.sub(r"[-/]", ".", user_date_str)
-
-        # Check if year is missing and append current year if necessary
-        if len(user_date_str.split('.')) == 2:
-            user_date_str += f".{datetime.now().year}"
-
-        # Replace German month names with numbers
-        month_names = {
-            "Jan": "01", "Januar": "01", "Feb": "02", "Februar": "02",
-            "Mär": "03", "März": "03", "Apr": "04", "April": "04",
-            "Mai": "05", "Jun": "06", "Juni": "06", "Jul": "07",
-            "Juli": "07", "Aug": "08", "August": "08", "Sep": "09",
-            "Sept": "09", "September": "09", "Okt": "10", "Oktober": "10",
-            "Nov": "11", "November": "11", "Dez": "12", "Dezember": "12"
-        }
-        for name, num in month_names.items():
-            user_date_str = user_date_str.replace(name, num)
-
-        # Path to the CSV file
-        base_path = os.getenv('BASE_PATH', r'C:\Users\kong\PycharmProjects\test\rasa\actions')
-        csv_file_path = os.path.join(base_path, 'event.csv')
+        if not user_date_str:
+            dispatcher.utter_message(text="Bitte geben Sie ein Datum ein.")
+            return []
 
         try:
-            df = pd.read_csv(csv_file_path, sep=";")
+            # Remove extra spaces and convert to lowercase
+            user_date_str = " ".join(user_date_str.lower().split())
+
+            # Extract date pattern from the sentence - improved pattern
+            date_pattern = r'(\d{1,2}\.?\s*(?:jan(?:uar)?|feb(?:ruar)?|mär(?:z)?|mrz\.?|apr(?:il)?|mai|jun(?:i)?|jul(?:i)?|aug(?:ust)?|sep(?:t)?(?:ember)?|okt(?:ober)?|nov(?:ember)?|dez(?:ember)?)|(?:\d{1,2})[-\s.\/]+(?:\d{1,2}))(?:[-\s.\/]+\d{4})?'
+            match = re.search(date_pattern, user_date_str, re.IGNORECASE)
+
+            if match:
+                user_date_str = match.group(0)  # Changed from group(1) to group(0)
+            else:
+                raise ValueError("Kein Datum gefunden")
+
+            # Normalize separators: replace multiple spaces, slashes, or dashes with a single dot
+            user_date_str = re.sub(r'[\s/\-]+', '.', user_date_str)
+
+            # Remove any spaces around dots
+            user_date_str = re.sub(r'\s*\.\s*', '.', user_date_str)
+
+            # German month names mapping (including abbreviations)
+            month_names = {
+                "jan": "01", "januar": "01",
+                "feb": "02", "februar": "02",
+                "mär": "03", "märz": "03", "mrz": "03",
+                "apr": "04", "april": "04",
+                "mai": "05",
+                "jun": "06", "juni": "06",
+                "jul": "07", "juli": "07",
+                "aug": "08", "august": "08",
+                "sep": "09", "sept": "09", "september": "09",
+                "okt": "10", "oktober": "10",
+                "nov": "11", "november": "11",
+                "dez": "12", "dezember": "12"
+            }
+
+            # Replace month names with numbers
+            for name, num in month_names.items():
+                user_date_str = re.sub(rf'\b{name}\.?\b', num, user_date_str, flags=re.IGNORECASE)
+
+            # Remove any trailing dots
+            user_date_str = user_date_str.rstrip('.')
+
+            # Split the date parts
+            date_parts = [part for part in re.split(r'[.\-/\s]+', user_date_str) if part]
+
+            # Pad day and month with leading zeros if necessary
+            if len(date_parts) >= 2:
+                date_parts[0] = date_parts[0].zfill(2)
+                date_parts[1] = date_parts[1].zfill(2)
+
+            # Handle different date part counts
+            if len(date_parts) == 2:
+                date_parts.append(str(datetime.now().year))
+            elif len(date_parts) == 3 and len(date_parts[2]) == 0:
+                date_parts[2] = str(datetime.now().year)
+
+            # Reconstruct the date string
+            user_date_str = '.'.join(date_parts)
+
+            # Rest of the code remains the same
+            base_path = os.getenv('BASE_PATH', r'C:\Users\kong\PycharmProjects\test\rasa\actions')
+            csv_file_path = os.path.join(base_path, 'event.csv')
+
+            df = pd.read_csv(csv_file_path)
             df['date'] = pd.to_datetime(df['date'], format="%d.%m.%Y").dt.date
 
-            # Convert user_date_str to date object
             event_date = datetime.strptime(user_date_str, "%d.%m.%Y").date()
 
-            # Filter events by the specified date
             filtered_events = df[df['date'] == event_date]
 
             if not filtered_events.empty:
