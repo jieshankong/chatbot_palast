@@ -1,0 +1,311 @@
+version: "3.1"
+rules:
+  - rule: Greet
+    steps:
+    - intent: greet
+    - action: utter_greet
+
+  - rule: Say goodbye anytime the user says goodbye
+    steps:
+    - intent: goodbye
+    - action: utter_goodbye
+
+  - rule: Handle unknow user inputs
+    steps:
+      - intent: nul_fallback
+      - action: action_default_fallback
+
+  - rule: Handle Ticket Printing Inquiry
+    steps:
+      - intent: ask_print_ticket
+      - action: utter_print_ticket
+
+  - rule: Handle Ticket Rebooking Inquiry
+    steps:
+      - intent: ask_ticket_rebooking
+      - action: utter_ticket_rebooking
+
+  - rule: Handle Not Get Ticket
+    steps:
+      - intent: ask_not_get_ticket
+      - action: utter_not_get_ticket
+
+  - rule: Handle Not Get Ticket by Post
+    steps:
+      - intent: ask_not_get_ticket_post
+      - action: utter_not_get_ticket_post
+
+  - rule: Handle Not Get Ticket by Email
+    steps:
+      - intent: ask_not_get_ticket_email
+      - action: utter_not_get_ticket_email
+
+  - rule: Ask about ticket purchase I
+    steps:
+      - intent: ask_ticket_booking
+      - action: utter_ticket_booking
+
+  - rule: Handle Questions about Website
+    steps:
+      - intent: ask_webshop
+      - action: utter_ask_webshop
+
+  - rule: Handle Questions About Ticket Box
+    steps:
+      - intent: ask_box_office
+      - action: utter_ask_box_office
+
+  - rule: Handle Questions About Call Center
+    steps:
+      - intent: ask_call_center
+      - action: utter_ask_call_center
+
+  - rule: Handle Delay Pickup Inquiry
+    steps:
+      - intent: ask_delay_pickup
+      - action: utter_delay_pickup
+
+  - rule: Handle Group Ticket
+    steps:
+      - intent: ask_group_ticket
+      - action: utter_group_ticket
+
+  - rule: Handle Ticket Shipping
+    steps:
+      - intent: ask_ticket_shipping
+      - action: utter_ticket_shipping
+
+  - rule: Ask about ticket purchase II
+    steps:
+      - action: utter_ticket_offer
+      - slot_was_set:
+          - request_type: "ticket"
+
+  - rule: Handle affirm for ticket offer
+    condition:
+      - slot_was_set:
+          - request_type: "ticket"
+    steps:
+      - intent: affirm
+      - action: utter_ticket_booking
+
+  - rule: Handle deny for ticket offer
+    condition:
+      - slot_was_set:
+          - request_type: "ticket"
+    steps:
+      - intent: deny
+      - action: utter_help_offer
+
+  - rule: Handle Voucher Booking
+    steps:
+      - intent: ask_buy_voucher
+      - action: utter_buy_voucher
+
+  - rule: Handle Voucher Booking
+    steps:
+      - intent: ask_voucher_not_work
+      - action: utter_voucher_not_work
+
+  - rule: Handle Question About PK
+    steps:
+      - intent: ask_PK
+      - action: utter_PK
+
+  - rule: Handle Question About Pricing
+    steps:
+      - intent: ask_Pricing
+      - action: utter_Pricing
+
+  - rule: Handle Question About Premium
+    steps:
+      - intent: ask_Premium
+      - action: utter_Premium
+
+  - rule: Handle Question About VIP
+    steps:
+      - intent: ask_VIP
+      - action: utter_VIP
+
+  - rule: Handle Question About WSL
+    steps:
+      - intent: ask_WSL
+      - action: utter_WSL
+
+  - rule: Handle Question About Payment Bar
+    steps:
+      - intent: ask_payment_bar
+      - action: utter_payment_bar
+
+  - rule: Handle Question About Payment Ticketbox
+    steps:
+      - intent: ask_payment_ticketbox
+      - action: utter_payment_ticketbox
+
+  - rule: Handle Question About Payment Webshop
+    steps:
+      - intent: ask_payment_webshop
+      - action: utter_payment_webshop
+
+  - rule: Handle Question About Payment Callcenter
+    steps:
+      - intent: ask_payment_callcenter
+      - action: utter_payment_callcenter
+
+  - rule: Handle Question About Directions
+    steps:
+      - intent: ask_directions
+      - action: utter_directions
+
+  - rule: Handle Question About Audiodescription
+    steps:
+      - intent: ask_audiodescription
+      - action: utter_audiodescription
+
+  - rule: Handle Question About Accessibility
+    steps:
+      - intent: ask_accessibility
+      - action: utter_accessibility
+
+  - rule: Handle Question About Entry Time
+    steps:
+      - intent: ask_entry_time
+      - action: utter_entry_time
+
+  - rule: Handle complain
+    steps:
+      - intent: complain
+      - action: utter_complain
+
+  - rule: Handle Question About Cloakroom
+    steps:
+      - intent: ask_cloakroom
+      - action: utter_cloakroom
+
+  - rule: Handle Question About Parking
+    steps:
+      - intent: ask_parking
+      - action: utter_parking
+
+  - rule: Handle Question About Food and Drink
+    steps:
+      - intent: ask_foodanddrink
+      - action: utter_foodanddrink
+
+  - rule: Handle Question About Backstage Tours
+    steps:
+      - intent: ask_backstage_tours
+      - action: utter_backstage_tours
+
+  - rule: Handle Question About Soundtracks
+    steps:
+      - intent: ask_soundtracks
+      - action: utter_soundtracks
+
+  - rule: Handle Question About Lost Found
+    steps:
+      - intent: ask_lost_found
+      - action: utter_lost_found
+
+  - rule: Handle Question About Hotel
+    steps:
+      - intent: ask_hotel
+      - action: utter_hotel
+
+  - rule: Handle Question About Induction Loop
+    steps:
+      - intent: ask_induction_loop
+      - action: utter_induction_loop
+
+  - rule: Handle Question About Program Book
+    steps:
+      - intent: ask_program_book
+      - action: utter_program_book
+
+  - rule: Handle Question About Dresscode
+    steps:
+      - intent: ask_dresscode
+      - action: utter_dresscode
+
+  - rule: Handle Filming During The Show
+    steps:
+      - intent: ask_filming_during_show
+      - action: utter_filming_during_show
+
+  - rule: Handle Question About New GS
+    steps:
+      - intent: new_grand_show
+      - action: utter_new_grand_show
+
+  - rule: Handle Question About Age
+    steps:
+      - intent: show_age_restriction
+      - action: utter_show_age_restriction
+
+  - rule: Check events rule
+    steps:
+      - intent: check_events
+      - action: action_check_events
+
+  - rule: Discount discount inquiry
+    steps:
+      - intent: ask_discount
+      - action: action_provide_dynamic_discount
+
+  - rule: Specific student discount inquiry
+    steps:
+      - intent: ask_discount_student
+      - action: utter_discount_student
+
+  - rule: Specific ADAC discount inquiry
+    steps:
+      - intent: ask_discount_adac
+      - action: utter_discount_adac
+
+  - rule: Specific disable discount inquiry
+    steps:
+      - intent: ask_discount_disable
+      - action: utter_discount_disable
+
+  - rule: Specific Berlin Welcome Card discount inquiry
+    steps:
+      - intent: ask_discount_berlin_welcome_card
+      - action: utter_discount_berlin_welcome_card
+
+  - rule: Specific PFA discount inquiry
+    steps:
+      - intent: ask_discount_pfa
+      - action: utter_discount_pfa
+
+  - rule: Specific Young Ticket discount inquiry
+    steps:
+      - intent: ask_discount_young_ticket
+      - action: utter_discount_young_ticket
+
+  - rule: Specific Senior discount inquiry
+    steps:
+      - intent: ask_discount_senior
+      - action: utter_discount_senior
+
+  - rule: Specific Unemployed discount inquiry
+    steps:
+      - intent: ask_discount_unemployed
+      - action: utter_discount_unemployed
+
+
+
+
+  - rule: Handle Question About Guest Play
+    steps:
+      - intent: ask_guest_play
+      - action: utter_guest_play
+
+  - rule: Handle Question About Serie
+    steps:
+      - intent: ask_serie
+      - action: utter_serie
+
+  - rule: Handle Question About Gaultier
+    steps:
+      - intent: ask_gaultier
+      - action: utter_gaultier

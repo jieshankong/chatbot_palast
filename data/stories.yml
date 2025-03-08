@@ -1,0 +1,42 @@
+version: "3.1"
+
+stories:
+
+  - story: complex ticket interaction booked by palast
+    steps:
+      - intent: ask_ticket_general
+      - action: utter_ticket_general
+      - intent: affirm_ticket
+      - action: utter_ticket_booked_where
+      - intent: ask_ticket_palast
+      - action: utter_ticket_booked_palast
+      - intent: action_handle_ticket_booked_palast
+
+  - story: complex ticket interaction booked by others
+    steps:
+      - intent: ask_ticket_general
+      - action: utter_ticket_general
+      - intent: affirm_ticket
+      - action: utter_ticket_booked_where
+      - intent: ask_ticket_another_providers
+      - action: utter_ticket_another_providers
+
+  - story: complex ticket interaction booking
+    steps:
+      - intent: ask_ticket_general
+      - action: utter_ticket_general
+      - intent: deny_ticket
+      - action: utter_ticket_booking
+
+  - story: show spielzeit with ticket offer
+    steps:
+      - intent: show_spielzeit
+      - action: action_fetch_current_show_name
+      - action: utter_show_spielzeit
+      - action: utter_ticket_offer
+
+  - story: show duration with show name
+    steps:
+      - intent: show_dauer
+      - action: action_fetch_current_show_name
+      - action: utter_show_dauer

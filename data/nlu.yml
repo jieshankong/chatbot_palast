@@ -1,0 +1,1649 @@
+version: "3.1"
+nlu:
+- lookup: discount_type
+  examples: |
+    - adac
+    - disable
+    - student
+    - berlin_welcome_card
+    - pfa
+    - young_ticket
+    - senior
+    - unemployed  
+
+- regex: student_regex
+  examples: |
+    - \b(student(in)?|student(en)?|azubi|azubis|schüler(in)?|studierende[r]?)\b
+
+- regex: adac_regex
+  examples: |
+    - \b(adac|adac[-\s]?mitglied(schaft)?)\b  
+
+- intent: greet
+  examples: |
+    - hallo
+    - hi
+    - hey
+    - guten Morgen
+    - guten Abend
+    - servus
+    - moin
+    - grüß dich
+    - grüß Gott
+    - na
+    - hallöchen
+    - guten Tag
+    - tach
+    - hallo zusammen
+    - hey there
+    - morgen
+    - guten Nachmittag
+    - hallo allerseits
+    - guten Tag allerseits
+    - hallo da
+    - sers
+    - mojn
+    - tag
+    - hoi
+- intent: goodbye
+  examples: |
+    - tschüss
+    - auf wiedersehen
+    - bis später
+    - mach's gut
+    - ciao
+    - ade
+    - bis bald
+    - bye
+    - leb wohl
+    - bis dann
+    - servus
+    - bis zum nächsten Mal
+    - man sieht sich
+    - gute Nacht
+    - hab noch einen schönen Tag
+    - mach's gut!
+    - wir sehen uns
+    - bis morgen
+    - bis zum nächsten Mal
+    - pass auf dich auf
+    - bis nächste Woche
+    - bis zum Wiedersehen
+    - Tschüssi
+    - Schönen Tag noch
+    - Schönen Abend noch
+    - Farewell
+- intent: affirm
+  examples: |
+    - ja
+    - klar
+    - natürlich
+    - auf jeden fall
+    - das wäre super
+    - genau
+    - absolut
+    - sicher
+    - sicher doch
+    - unbedingt
+    - ja bitte
+    - so ist es
+    - stimmt
+    - gewiss
+    - oh ja
+    - definitiv
+    - ja klar
+    - ohne Zweifel
+    - ja, gerne
+    - das stimmt
+- intent: deny
+  examples: |
+    - nein
+    - nicht wirklich
+    - nein danke
+    - lieber nicht
+    - auf keinen fall
+    - niemals
+    - keineswegs
+    - sicher nicht
+    - nein, danke
+    - ich denke nicht
+    - bestimmt nicht
+    - wohl kaum
+    - nicht interessiert
+    - nee
+    - leider nein
+    - nicht notwendig
+    - nicht heute
+    - nein, lieber nicht
+    - ich glaube nicht
+    - kein Interesse
+- intent: affirm_ticket
+  examples: |
+    - ja. ich habe Ticket gebucht.
+    - Ja, meine Buchung wurde abgeschlossen.
+    - Doch, ich habe bereits ein Ticket erworben.
+    - Ja, die Tickets sind schon gekauft.
+    - Ja, das habe ich schon erledigt.
+    - Ja, ich habe sie gestern gekauft.
+    - Absolut, meine Tickets sind bereits in Ordnung.
+    - Ja, ich habe die Tickets bereits reserviert.
+    - Richtig, die Buchung ist durch.
+    - Ja, das ist schon passiert.
+    - Jawohl, ich habe schon reserviert.
+    - Ja, ich habe das schon abgeschlossen.
+    - Sicher, das ist schon erledigt.
+- intent: deny_ticket
+  examples: |
+    - nein. Ich habe noch kein Ticket.
+    - Nein, ich muss das noch machen.
+    - Nein, ich habe noch keine Tickets gekauft.
+    - Nein, das habe ich noch nicht erledigt.
+    - Noch nicht, ich muss meine Tickets noch buchen.
+    - Nein, ich habe noch nichts gebucht.
+    - Noch nicht, das steht noch aus.
+    - Nein, ich muss das noch kaufen.
+    - Nein, bisher noch nicht.
+    - Nein, das steht noch auf meiner Liste.
+    - Nein, ich habe noch keine Karten.
+    - Ich habe noch keine Buchung vorgenommen.
+    - Nein, das muss ich noch abschließen.
+
+- intent: nul_fallback
+  examples: |
+    - liebst du Katzen?
+    - was ist deine Lieblingsfarbe?
+    - wie ist das Wetter heute?
+    - erzähl mir einen Witz
+    - wer ist dein Lieblingsschauspieler?
+    - was denkst du über KI?
+    - erzähl mir von deinem Tag
+    - kannst du mir beim Kochen helfen?
+    - welche Musik magst du?
+    - hast du Geschwister?
+    - wie alt bist du?
+    - was sind deine Hobbys?
+    - verstehst du Emotionen?
+    - was ist der Sinn des Lebens?
+    - glaubst du an Außerirdische?
+    - kannst du ein Auto fahren?
+    - was ist deine Lieblingsserie?
+    - wer ist der Präsident der USA?
+    - kann ich dir persönliche Fragen stellen?
+    - was ist dein Lieblingsessen?
+
+- intent: ask_ticket_general
+  examples: |
+    - Ich habe eine Frage zu Ticket.
+    - Ich habe Schwierigkeiten mit meinem Ticket.
+    - Ich benötige Unterstützung bezüglich meiner Eintrittskarte.
+    - Kannst du mir bei meinem Ticket helfen?
+    - Es handelt sich um die Eintrittskarten für die Show.
+    - Ich hätte gerne mehr Informationen zu den Eintrittskarten.
+    - Könnten Sie mir bitte Auskunft über die Eintrittskarten geben?
+    - Ich hätte eine Frage zum Ticket.
+    - Ich habe Fragen zu meinen Tickets.
+    - Ich komme mit meinen Tickets nicht klar.
+    - Meine Tickets machen mir Ärger.
+    - Ich verstehe meine Tickets nicht.
+    - Meine Tickets verwirren mich.
+    - Ich habe Probleme mit meinen Tickets.
+    - Ich komme nicht mit meinen Tickets zurecht.
+    - Ich benötige Unterstützung bei der Verwendung meiner Tickets.
+    - Könntest du mir Informationen zu meinen Tickets geben?
+    - Ich verstehe meine Tickets nicht, kannst du sie mir erklären?
+    - Meine Tickets bereiten mir Schwierigkeiten.
+    - Ich brauche Hilfe mit meinen Tickets.
+    - Kannst du mir bei meinen Tickets helfen?
+    - Ich habe eine Frage zu meinen Tickets
+    - Ich bin mir unsicher bezüglich meiner Tickets.
+- intent: ask_ticket_palast
+  examples: |
+    - bei euch.
+    - In der Theaterkasse.
+    - Durch online.
+    - Im Palast.
+- intent: ask_ticket_another_providers
+  examples: |
+    - Ich habe die Tickets nicht im Friedrichstadt-Palast gebucht.
+    - Ticketmaster
+    - Kannst du mir mit meinem GetYourGuide Ticket helfen?
+    - Ich habe meine Tickets woanders gebucht.
+    - Ich habe die Tickets nicht im Palast gebucht.
+    - Ich habe Tickets bei Eventim gebucht.
+- intent: ask_ticket_booking
+  examples: |
+    - Wie bekomme ich meinen Sitzplatz?
+    - Wo kann ich die Tickets buchen?
+    - Wo bestelle ich am besten meine Tickets?
+    - Wo kann ich Karten für das Event erwerben?
+    - Wo bekomme ich Zugangskarten?
+    - Wo bekommt man die Eintrittskarten?
+    - Ich möchte Tickets kaufen.
+    - Kann ich bei dir Tickets kaufen?
+    - Wie kann ich online Tickets reservieren?
+    - Wo finde ich Tickets für das nächste Konzert?
+    - Gibt es eine App, in der ich Tickets kaufen kann?
+    - Ist es möglich, Last-Minute-Tickets zu erwerben?
+- intent: ask_ticket_rebooking
+  examples: |
+    - Auf der Homepage habe ich von einer Umbuchung gelesen. Wie funktioniert das?
+    - Ich würde gerne Tickets für heute Abend krankheitsbedingt umbuchen.
+    - Ist eine Umbuchung unserer Tickets noch möglich?
+    - Guten Tag, kann ich eine Buchung wegen Erkrankung in einen Gutschein umwandeln?
+    - Ist es möglich die Karten umzutauschen?
+    - Wir haben Corona bekommen, ist es möglich die Karten umzutauschen?
+    - Hallo, ich möchte bitte unsere bestehenden Tickets umbuchen.
+    - Kann ich noch irgendwie mein Ticket für morgen 11.30h umtauschen?
+    - Ich möchte die Tickets gerne stornieren.
+    - Ich kann morgen nicht kommen und möchte das Ticket zurückgeben.
+    - Wie kann ich das Ticket für einen Gutschein eintauschen?
+    - Muss ich die Ticketrückgabe von Online gekauften Tickets an der Theaterkasse abwickeln lassen oder kann ich dies auch über die Hotline machen?
+    - Ticketrückgabe von Online gekauften Tickets.
+    - Leider sind wir plötzlich erkrankt. Ich habe die Karten direkt beim Friedrichstadt erworben. Kann ich Sie morgen früh noch in einen Gutschein umwandeln?
+    - Wie kann ich die Tickets umtauschen?
+    - Können wir unseren schönen Abend bei Ihnen nachholen und für das Geld einen Gutschein bekommen oder ähnliches?
+    - Leider kann eine Person von uns nicht mitkommen. Ist es möglich, dass wir ein Ticket als Gutschein erstattet bekommen?
+    - Hallo! Ich hätte 4 Tickets zu viel! Kann ich die noch irgendwie für die Abendkasse abgeben?
+    - Wo kann ich mein Ticket in einen Gutschein umtauschen?
+    - Könnten Sie mir bitte mitteilen, wie ich eine Stornierung für meine Show-Tickets vornehmen kann?
+    - Ich würde gerne meine Karte in einen Wertgutschein tauschen.
+    - Gibt es die Möglichkeit, meine Tickets in einen Gutschein umzuwandeln?
+    - Was passiert, wenn jemand krankheitsbedingt nicht an der Veranstaltung teilnehmen kann? Kann ich die Tickets zurückgeben?
+    - Wenn jemand krank wird und nicht an der Veranstaltung teilnehmen kann, kann ich die Tickets zurückgeben?
+- intent: ask_print_ticket
+  examples: |
+    - Muss ich meine Tickets ausdrucken?
+    - Ich kann die Passbook Dateien nicht drucken.
+    - Warum kann ich die Wallet Tickets nicht drucken?
+    - Warum kann ich meine Tickets nicht ausdrucken?
+    - Ich kann die Tickets nicht drucken!
+    - Muss ich meine Tickets ausdrucken oder geht auch digital?
+    - Wie kann ich meine Tickets auf meinem Handy anzeigen lassen?
+    - Sind die Tickets auch in digitaler Form gültig?
+    - Gibt es eine Möglichkeit, meine Tickets auf dem Smartphone zu haben?
+    - Kann ich die Eintrittskarten digital speichern?
+    - Kann ich die Tickets mit einer Wallet App öffnen?
+    - Es sind mehrere Tickets auf einer DIN A4 Seite.
+    - Darf ich meine Tickets auf mehreren Geräten speichern?
+    - Ist es nötig, physische Tickets zu haben, oder reicht eine digitale Version?
+    - Kann ich meine Ticketinformationen per E-Mail erhalten?
+    - Wie lade ich meine Tickets auf mein Telefon?
+    - Brauche ich eine spezielle App, um meine Tickets zu speichern?
+    - Können digitale Tickets auf jedem Smartphone angezeigt werden?
+    - Was mache ich, wenn mein Handy mit den Tickets verloren geht?
+    - Kann ich mein Ticket auch als PDF auf meinem Handy speichern?
+    - Gibt es Sicherheitsbedenken bei digitalen Tickets?
+    - Wie vermeide ich Probleme beim Scannen digitaler Tickets am Eingang?
+    - Können alle Scangeräte am Eingang digitale Tickets lesen?
+- intent: ask_not_get_ticket
+  examples: |
+    - Ich warte immer noch auf meine Tickets, was ist los?
+    - Meine Tickets sind noch nicht eingetroffen, können Sie mir weiterhelfen?
+    - Ich habe meine Karten noch nicht bekommen, was kann ich tun?
+    - Warum sind meine Karten noch nicht da?
+    - Wann kann ich meine Karten erwarten?
+    - Meine Karten sind noch nicht da, was soll ich tun?
+    - Ich habe meine Tickets bereits bestellt, aber sie sind noch nicht angekommen
+    - Ich habe meine Tickets noch nicht erhalten, können Sie mir bitte helfen?
+    - Wann werden meine Eintrittskarten zugestellt?
+    - Meine Karten wurden noch nicht geliefert
+    - Ich warte noch immer auf meine Karten
+    - Wann kann ich mit meinen Tickets rechnen?
+    - Meine Karten sind noch nicht bei mir angekommen
+    - Wann erhalte ich meine Tickets?
+    - Ich habe meine Tickets noch nicht in Händen
+    - Meine Eintrittskarten sind immer noch nicht da
+    - Ich habe meine Karten noch nicht bekommen
+    - Meine Tickets sind noch nicht zugestellt worden
+    - Ich warte schon lange auf meine Tickets
+    - Wo sind meine Eintrittskarten geblieben?
+    - Ich habe bezahlt, aber noch keine Tickets erhalten
+    - Warum habe ich meine Tickets noch nicht bekommen?
+    - Ich habe immer noch keine Eintrittskarten
+    - Meine Tickets sind noch nicht angekommen
+    - Wann kommen meine Tickets endlich an?
+    - Wo bleiben meine Tickets?
+    - Ich habe meine Tickets noch nicht erhalten
+    - Meine Eintrittskarten sind noch nicht bei mir eingegangen
+- intent: ask_not_get_ticket_post
+  examples: |
+    - Was mache ich, wenn mein Ticket nicht zugestellt wird?
+    - Wie lange dauert die Lieferung meines Tickets per Post?
+    - Kann ich ein Ersatz-Ticket bekommen, wenn meins gestohlen wird?
+    - Was, wenn mein Ticket auf dem Postweg verloren geht?
+    - Wann kommt mein Ticket endlich an?
+    - Mein Ticket wurde nicht geliefert.
+    - Was passiert, wenn ich mein Ticket verliere oder es gestohlen wird?
+    - Wie lange dauert es normalerweise, bis ein Ticket geliefert wird?
+    - ich befürchte, dass mein Ticket verloren gegangen ist. Was sollte ich jetzt tun?
+    - ich mache mir Sorgen, dass mein Ticket nicht rechtzeitig für das Event ankommt. Wie kann ich das vermeiden?
+    - Kann ich mein Ticket auch an der Abendkasse abholen, falls es nicht rechtzeitig ankommt?
+    - Gibt es eine Tracking-Nummer für meine Ticketlieferung?
+    - Wurde mein Ticket bereits verschickt?
+    - Wann kann ich mit der Lieferung meines Tickets rechnen?
+    - Wann erhalte ich mein Ticket per Post?
+    - Wann werden die Tickets per Post geliefert?
+- intent: ask_not_get_ticket_email
+  examples: |
+    - Gibt es eine Möglichkeit, meine Tickets auf andere Weise zu erhalten, falls die E-Mail nicht zugestellt werden kann?
+    - Ich habe versehentlich die E-Mail mit meinen Tickets gelöscht. Kann ich eine neue bekommen?
+    - Ich habe meine Tickets per E-Mail bestellt, aber ich kann sie nicht finden. Was soll ich tun?
+    - Wie kann ich überprüfen, ob meine Tickets per E-Mail verschickt wurden?
+    - Ich frage mich, ob meine Tickets per E-Mail verschickt wurden oder ob es ein Problem gab.
+    - Wann kann ich mit der Zustellung meiner Tickets per E-Mail rechnen?
+    - Ich habe keine E-Mail mit meinen Tickets erhalten, obwohl ich sie vor einer Woche bestellt habe.
+    - Ich warte schon seit einer Woche auf meine Tickets, die per E-Mail zugestellt werden sollten.
+    - Ich habe meine Tickets vor ein paar Tagen per E-Mail bestellt, aber sie sind noch nicht angekommen.
+    - Wie kann ich überprüfen, ob meine Email mit den Tickets im Spam-Ordner gelandet ist?
+    - Ich habe vor ein paar Tagen meine Tickets per Email bestellt, aber noch nichts erhalten.
+    - Sind meine Tickets schon per Email verschickt worden?
+    - Wann kann ich mit der Zustellung meiner Tickets per Email rechnen?
+    - Ich habe keine Email mit meinen Tickets bekommen, was soll ich tun?
+    - Wo bleiben meine Tickets? Ich habe sie per Email bestellt.
+    - Ich warte noch auf meine Ticket-Email.
+    - Meine Tickets sollten per Email kommen, aber ich habe sie noch nicht erhalten.
+    - Ich habe mein Ticket per Email bestellt und es noch nicht erhalten
+    - Wie lange dauert es normalerweise, bis ich die E-Mail mit meinen Tickets erhalte?
+    - Kann ich meine Tickets auch auf anderem Wege bekommen, wenn ich keine E-Mail erhalten habe?
+    - Meine Tickets sind nicht in der E-Mail, die ich erwartet habe. Was kann ich tun?
+    - Es ist bereits einige Zeit vergangen und ich habe immer noch keine E-Mail mit meinen Tickets erhalten.
+    - Wo kann ich meine Tickets finden, falls ich keine E-Mail erhalten habe?
+    - Was passiert, wenn ich die E-Mail mit den Tickets nicht bekomme?
+- intent: ask_webshop
+  examples: |
+    - Kannst du mir den Link zum Webshop schicken?
+    - Ich möchte Karten kaufen. Finde auf der Website aber nicht den passenden Link.
+    - Wie gelange ich zum Webshop?
+    - Ich möchte meine Karten über den Webshop kaufen.
+    - Ich möchte Tickets über das Internet erwerben.
+    - Ich benötige Tickets und möchte diese online erwerben.
+    - Wo finde ich den Online-Shop auf eurer Seite?
+    - Kann ich die Webseite für den Ticketkauf haben?
+    - Wo kann ich online Karten bestellen?
+    - Wie komme ich zur Online-Ticketbuchung?
+    - Gibt es eine direkte URL zum Ticketshop?
+    - Wie kann ich direkt in den Webshop gelangen?
+    - Ich suche den Link zur Online-Buchung.
+    - Wo ist der Zugang zum Ticketverkauf auf der Webseite?
+    - Kannst du mir helfen, zum Webshop zu navigieren?
+    - Wie erreiche ich den Webshop von eurer Hauptseite aus?
+    - Kann ich über eure Website direkt Tickets kaufen?
+    - Zeige mir bitte, wo ich online Tickets kaufen kann.
+    - Brauche Hilfe beim Finden des Ticketshops auf eurer Website.
+    - Ich finde den Weg zum Webshop nicht, kannst du mir assistieren?
+- intent: ask_box_office
+  examples: |
+    - Hallo.Ich würde die Tickets an der Abendkasse abholen wollen geht das?
+    - wie sind die Öffnungszeiten vom Friedrichstadt Palast
+    - Kann ich am Tag der Show noch Tickets kaufen?
+    - kann ich am Abend noch Tickets für die Show kaufen?
+    - Kann kann ich meine Tickets an der Theaterkasse bekommen?
+    - Ist die Theaterkasse um 10 geöffnet?
+    - Wann kann ich die Tickets an der Theaterkasse abholen?
+    - Ist es möglich Karten direkt vor Ort zu kaufen? Wie wären die Öffnungszeiten ?
+    - Wann ist die Theaterkasse offen?
+    - Öffnungszeiten Theaterkasse
+    - Ist der Kauf von Tickets am Theater möglich?
+    - Kann man Tickets auch direkt im Theater kaufen?
+    - Sind Tickets auch an der Abendkasse erhältlich?
+    - Wie sieht es mit dem Kauf von Tickets am Theater aus?
+    - Gibt es eine Möglichkeit, Tickets direkt im Theater zu erwerben?
+    - Wann kann ich Tickets am Theater kaufen?
+    - Wann öffnet die Theaterkasse?
+- intent: ask_call_center
+  examples: |
+    - Wann sind die Sprechzeiten?
+    - Wann ist die Kundebetreuung erreichbar?
+    - Wann ist der Service erreichbar?
+    - Ab wann kann ich anrufen?
+    - Wann kann ich mit einer Mitarbeiterin chatten?
+    - Ab wieviel Uhr kann ich mit einem Mitarbeiter chatten?
+    - Wann ist der Service geschaltet?
+    - Wann ist die Hotline zu erreichen?
+    - Wann kann ich die Kundenbetreuung anrufen?
+    - Wie erreiche ich die Kundenbetreuung?
+    - Wann kann ich den Service erreichen?
+    - Wie komme ich mit eurem Support in Kontakt?
+    - Wie kann ich mit eurem Team in Verbindung treten?
+    - Wie kann ich den Support kontaktieren?
+    - Wie erreiche ich euren Kundenservice?
+    - Was muss ich tun, um mit euch in Kontakt zu treten?
+    - Kann ich euch irgendwie kontaktieren?
+    - Wie nehme ich Kontakt zu euch auf?
+    - Könnt ihr mir sagen, wie ich euch kontaktieren kann?
+    - Welche Möglichkeiten gibt es, um euch zu kontaktieren?
+    - Gibt es eine Möglichkeit, euch zu kontaktieren?
+    - Wie erreiche ich den Support?
+    - Wie komme ich mit euch in Kontakt?
+    - Wie ist die Telefonnummer der Hotline?
+    - Unter welcher Telefonnummer kann ich euch erreichen?
+    - Ich brauche eure Kontaktdaten.
+    - Wie kann ich mit eurem Kundenservice in Kontakt treten?
+    - Gibt es eine Telefonnummer für euren Kundendienst?
+    - Kann man auch telefonisch Tickets bestellen?
+- intent: ask_delay_pickup
+  examples: |
+    - Ich habe ein Ticket zur Abholung bestellt. Bis wann muss ich das Ticket abholen?
+    - Ich habe für die Vorstellung morgen ein Ticket zur Abholung bestellt. Bis wann muss ich das Ticket abholen?
+    - Ich verpäte mich. Darf ich trotzdem rein?
+    - Verspätung bei Abholung
+    - Kann ich meine Tickets für jemand anderen abholen lassen?
+    - Gibt es einen separaten Schalter für Ticketabholungen?
+    - Bis wann ist die Abholung der Tickets möglich?
+    - Wie früh sollte ich am Veranstaltungsort sein, um meine Karten abzuholen?
+    - Kann ich meine Tickets auch an der Abendkasse abholen?
+    - Gibt es eine Frist, bis wann ich meine Tickets abholen muss?
+    - Wie viel vor Vorstellungsbeginn muss ich meine Karten abholen?
+    - Ich kann meine Karten nicht rechtzeitig abholen?
+    - Was ist wenn ich die Tickets nicht rechtzeitig abholen kann?
+    - Wie lange ist das Ticketbüro geöffnet, um meine Tickets abzuholen?
+    - Kann ich jemand anderen beauftragen, meine Tickets für mich abzuholen?
+    - Gibt es eine Möglichkeit, meine Tickets vor Ort abzuholen?
+    - Ich habe meine Tickets online gekauft, wo kann ich sie abholen?
+    - Wo kann ich meine Karten abholen?
+    - Wie kann ich mein Karten abholen?
+    - Ich komme zu spät um meine Karten abzuholen.
+    - Ich verspäte mich und kann meine Tickets nicht abholen.
+- intent: ask_group_ticket
+  examples: |
+    - Wie viel kostet der Eintritt pro Schüler von einem Schulbesuch?
+    - Ich möchte mit mehreren Schulklassen im September 2025 zu ihrer Vorstellung kommen. 
+    - Klassen von mind. 30 Personen alle schüler unter 18 Jahre und 2 Lehrer über 30. Kosten der tickets?
+    - Ich wollte Mal erfragen wie hoch wäre der Nachlass für eine 5.Klasse mit 27 Kindern und 4 Erwachsenen?
+    - Gibt es Ermäßigungen für Firmenbuchungen?
+    - Bieten Sie spezielle Pakete für Firmenbesuche an?
+    - Können wir als Team eine Veranstaltung bei Ihnen besuchen?
+    - Welche Vorteile bieten Sie Firmenkunden?
+    - Sind Gruppenbuchungen für Firmen möglich?
+    - Haben Sie Angebote für Geschäftskunden?
+    - Wie sind Ihre Bedingungen für Gruppenreservierungen?
+    - Bieten Sie spezielle Preise für Firmenkunden an?
+    - Können wir als Firma bei Ihnen eine Tour buchen?
+    - Wir wollen mit unserer Firma Sie besuchen.
+    - Welche Konditionen bieten Sie für Geschäftskunden?
+    - Können wir als Gruppe eine Vorstellung besuchen?
+    - Akzeptieren Sie Gruppenbuchungen für Unternehmen?
+    - Gibt es Rabatte für Firmenbesuche?
+    - Wie läuft die Buchung für Firmengruppen ab?
+    - Können wir als Firma an Ihrer Show teilnehmen?
+    - Ist es möglich, eine Firmenveranstaltung bei Ihnen zu buchen?
+    - Haben Sie spezielle Angebote für Firmenevents?
+    - Bieten Sie Konditionen für Firmenfeiern?
+    - Kann ich mit meinem Unternehmen die Show besuchen?
+    - Es handelt sich um eine Gruppenbuchung.
+    - Kann man mit einer Gruppe ohne Voranmeldung kommen?
+    - Muss man sich als Gruppe vorher anmelden?
+    - Müssen Gruppenbesuche vorher angemeldet werden?
+    - Ich würde gerne mit einer größeren Gruppe von Schülern zu Ihnen kommen. Gibt es spezielle Angebote?
+    - Gibt es Vergünstigungen für Schulgruppen?
+    - Sind Sonderpreise für Schulklassen verfügbar?
+    - Wie hoch ist der Gruppenrabatt für Schülergruppen?
+    - Ich bin Lehrer und möchte mit meiner Klasse zu Ihnen kommen. Gibt es spezielle Preise?
+    - Gibt es Rabatte für Schulklassen?
+    - Ich möchte mit einer Schulklasse kommen.
+    - Ich suche nach einem Rabatt für meine Gruppe. Haben Sie etwas anzubieten?
+    - Ich plane eine Gruppenreise. Gibt es spezielle Angebote?
+    - Kann ich einen Rabatt bekommen, wenn ich mit einer größeren Gruppe komme?
+    - Wie viele Personen muss man haben um ein Gruppenticket zu kaufen?
+- intent: ask_ticket_shipping
+  examples: |
+    - Wie lange dauert der Versand?
+    - Wie teuer ist der Postversand für Tickets?
+    - Ich möchte gerne die Tickets im Voraus kaufen, aber ich bin mir noch nicht sicher, ob ich sie abholen oder zuschicken lassen möchte. Ist das möglich?
+    - Kann ich die Tickets online kaufen und dann per Post zugeschickt bekommen?
+    - Ich hätte gerne physische Tickets, aber ich kann nicht persönlich vorbeikommen. Gibt es eine Alternative?
+    - Ist es möglich, die Tickets per E-Mail zu erhalten?
+    - Ich würde gerne Eintrittskarten kaufen, aber ich möchte sie nicht digital haben.
+    - Ist es möglich, die Eintrittskarten online zu bestellen und dann im Geschäft abzuholen?
+    - Gibt es die Möglichkeit die Tickets online zu kaufen und vor Ort abzuholen?
+    - Ich möchte physische Karten haben.
+    - Ich möchte meine Karten per Post zugesendet bekommen.
+    - Kann ich die Tickets vor Ort abholen?
+    - Gibt es die Möglichkeit, die Tickets mit der Post geschickt zu bekommen?
+    - Wann bekomme ich meine Tickets?
+    - Wie schnell bekomme ich meine Tickets?
+    - Wann werden mir die Karten zugeschickt?
+    - Wie lange dauert es bis ich die Karten habe?
+    - Werden mir die Karten zugeschickt?
+    - Erhalte ich die Karten als EMail?
+    - Wie komme ich an die gekauften Karten?
+    - Gibt es digitale Tickets?
+    - Erhalte ich die Tickets digital?
+    - Bekomme ich die Tickets per Mail?
+    - Wie bekomme ich meine Tickets?
+
+- intent: ask_buy_voucher
+  examples: |
+    - Wie kaufe ich ein Geschenkpaket?
+    - Was ist ein Geschenkpaket?
+    - Ich möchte ein Geschenkpaket kaufen!
+    - Gibt es Geschenkpakete?
+    - Warum kann man kein Gutschein für die delight Show kaufen.
+    - Ich möchte einen Gutschein buchen.
+    - Ich möchte einen allgemeinen Gutschein kaufen.
+    - wie kann ich einen Gutschein kaufen?
+    - kann ich das Falling in Love Geschenkpaket auch für eine andere Veranstaltung einlösen? 
+    - Hallo, wo kann ich einen Gutschein für 2025 Falling in Love buchen
+    - Kann ich Gutscheine für „Blinded by Delight“ kaufen?
+    - können mit dem geschenkpaket im wert von 150 € auch zwei tickets erworben werden?
+    - Kann man Gutscheine einlösen für die Gastronomie?
+    - Kann ich meine Gutschein auch einlösen zum Verzehr?
+    - Ist der Gutschein nur für falling in Love nutzbar oder auch für folgende Shows im Friedrichstadtpalast?
+    - Ist der Gutschein allgemein verwendbar ist oder nur für die Vorstellung Falling in Love?
+    - Kann ich den Gutschein auch für Merchandise-Produkte verwenden?
+    - Kann ich meinen Gutschein online einlösen?
+    - Gibt es spezielle Gutscheine für bestimmte Veranstaltungen?
+    - Kann ich jemand anderem einen Gutschein von Ihnen schenken?
+    - Bieten Sie Gutscheine als Geschenk an?
+    - Kann man Ihre Gutscheine verschenken?
+    - Haben sie Geschenkgutscheine?
+    - Kann ich meinen Gutschein für alle Veranstaltungen einlösen?
+    - Wo kann ich den Gutschein einlösen?
+    - Kann ich meinen Gutschein auch für eine Gastveranstaltung verwenden?
+    - Wie lange ist ein Gutschein bei Ihnen gültig?
+    - Kann ich einen Gutschein auch telefonisch kaufen?
+    - Wie kann ich einen Gutschein für Ihre Veranstaltungen erwerben?
+    - Gelten Gutscheine für alle Veranstaltungen?
+    - Ich würde gerne einen Geschenkgutschein verschenken, geht das bei Ihnen?
+    - Kann ich hier Geschenkgutscheine erwerben?
+    - Ich möchte gerne einen Geschenkgutschein kaufen.
+    - Wo bekomme ich einen Gutschein für den Show?
+    - Bieten Sie Gutscheine an?
+- intent: ask_voucher_not_work
+  examples: |
+    - Ich habe einen Gutschein, wie kann ich ihn einlösen?
+    - Wo muss ich den Gutscheincode eingeben?
+    - An wen muss ich mich wenden wenn mein Gutschein nicht funktioniert?
+    - Wie lange dauert es, bis mein Gutschein aktiviert ist?
+    - Was passiert, wenn mein Gutschein abgelaufen ist?
+    - Wie lange ist mein Gutschein gültig?
+    - Kann ich meinen Gutschein auch online einlösen?
+    - Mein Gutschein wird nicht akzeptiert, was kann ich tun?
+    - Ich habe Schwierigkeiten, meinen Gutschein einzulösen.
+    - Wo löse ich den Gutschein ein?
+    - Mein Gutschein ist ungültig.
+    - Der Gutscheincode wird nicht angenommen.
+    - Was kann ich machen wenn man Gutschein nicht angenommen wird.
+    - Ist mein Gutschein abgelaufen, wenn er nicht funktioniert?
+    - Mein Gutschein funktioniert nicht.
+    - Wie kann ich meinen Gutschein einlösen?
+
+- intent: ask_PK
+  examples: |
+    - Wo ist pk1 bis pk3?
+    - Was kostet ein Ticket in der 1bis 2Reihe?
+    - Was ist der Günstigere Ticketpreis?
+    - Wie teuer sind die Eintrittskarten?
+    - Wie teuer sind die Tickets?
+    - Welche Sitzplätze sind am meisten empfehlenswert?
+    - Sind teurere Plätze wirklich besser als günstigere?
+    - Welche Sitzplätze bieten das beste Preis-Leistungs-Verhältnis?
+    - Wo bekomme ich Tickets mit gutem Preis-Leistungs-Verhältnis?
+    - Gibt es günstige Sitzplätze mit guter Sicht?
+    - Welche Tickets sollte ich kaufen um eine gute Sicht zu haben?
+    - Wo sollte man sitzen um trotz geringem Preis eine gute Sicht zu haben?
+    - Welche Plätze sind am besten für den Preis?
+    - Wie viel muss ich für gute Plätze ausgeben?
+    - Kann man auch mit einem kleinen Budget gute Plätze bekommen?
+    - Sind die Plätze die am wenigsten kosten auch gut?
+    - Hat man bei den günstigsten Tickets eine gute Sicht?
+    - Wo sitzt man mit den billigsten Tickets?
+    - Wo beginnen die Ticketpreise?
+    - Gibt es Einsteigertickets?
+    - Wie viel kosten die günstigsten Tickets?
+- intent: ask_Pricing
+  examples: |
+    - Warum sind die Ticketpreise so hoch?
+    - Wann sinken die Preise für die Tickets?
+    - Gibt es einen Zeitpunkt, an dem die Tickets günstiger sind?
+    - Sind die Preise für die Karten immer so hoch?
+    - Warum sind die Eintrittskarten so teuer?
+    - Warum kosten die Tickets so viel Geld?
+    - Wann sind die Karten am billigsten?
+    - Sind die Karten kurz vor der Veranstaltung günstiger?
+    - Sollte man noch etwas warten bis man die Ticktes kauft?
+    - Wann sind die Tickets am billisten?
+    - Lohnt es sich, auf Last-Minute-Angebote zu warten?
+    - Kann man durch frühzeitige Buchung günstigere Tickets bekommen?
+    - Sind die Preise für Tickets saisonabhängig?
+    - Wie kann man Geld sparen, wenn man Tickets kauft?
+    - Können die Preise für Tickets schwanken?
+    - Steigen die Ticketpreise mit höherer Nachfrage?
+    - Werden die Karten nochmal billiger?
+    - Sind die Karten für manche Vorstellungen günstiger?
+    - Von was hängen die Preise der Karten ab?
+    - Nach was richten sich die Ticketpreise?
+    - Ändern sich die Ticketpreise?
+- intent: ask_Premium
+  examples: |
+    - Ich möchte zwei Plätze direkt in der Mitte.
+    - Gibt es besonders gute Sitzplätze?
+    - Was bezahlt man für Premium+ Tickets?
+    - Wie viel kosten Premium Tickets?
+    - Von wo ist die Vorstellung am besten?
+    - Was sind die Preise für Tickets in den vorderen Reihen?
+    - Wie viel kostet ein Ticket für die erste Reihe?
+    - Gibt es einen Unterschied im Preis zwischen den vorderen und hinteren Reihen?
+    - Wie viel bezahlt man für den besten Sitzplatz?
+    - Was sind Premium+ Tickets?
+    - Ist es teurer in der Mitte zu sitzen?
+    - Wie viel muss ich bezahlen um weiter vorne zu sitzen?
+    - Wie viel kosten Tickets weiter vorne im Saal?
+- intent: ask_VIP
+  examples: |
+    - Ist ein Glas Sekt pro vip Karte gratis?
+    - Ich würde gerne Sitze mit großzügiger Beinfreiheit reservieren
+    - Kann ich Sitze mit mehr Beinfreiheit buchen?
+    - Ich bevorzuge Sitze mit viel Platz für die Beine.
+    - Gibt es Sitze mit extra Beinfreiheit?
+    - Ich suche sitze mit Beinfreiheit
+    - Ich will Beinfreiheit
+    - Was unterscheidet VIP von den anderen Preiskategorien?
+    - Was gibt es bei VIP dazu?
+    - Was ist das Besondere an der VIP-Preiskategorie?
+    - Was ist ist bei der Preiskategorie VIP inklusive?
+    - Gibt es besondere Geschenke oder Souvenirs für VIPs?
+    - Wie viele VIP Plätze gibt es insgesamt?
+    - Sind Getränke und Snacks im VIP Bereich kostenfrei?
+    - Gibt es für VIPs besondere Parkplätze?
+    - Kann man als VIP früher in die Veranstaltung gelassen werden?
+    - Sind die Sitze für VIPs komfortabler als die normalen Sitze?
+    - Sind die VIP Plätze besser als die anderen?
+    - In welchen Reihen sind die VIP Plätze?
+    - Gibt es für VIPs einen eigenen Zugang?
+    - Hat man mit VIP Tickets den besten Platz?
+    - Wie viel kosten VIP Tickets?
+    - Kann ich VIP Tickets kaufen?
+    - Was sind VIP Tickets?
+    - Was bieten VIP Tickets?
+    - Habt ihr Tickets für VIPs?
+    - Gibt es VIP Tickets?
+- intent: ask_WSL
+  examples: |
+    - Sind in der Sky Lounge auch die Getränke im Preis inbegriffen? 
+    - Sind in der Sky Lounge die Getränke im Kartenpreis mit inbegriffen? 
+    - Ist der Seiteneingang automatisch wenn man sky Wall Tickets bucht?
+    - Sind in der Wall Sky Lounge auch Snacks erhältlich?
+    - Gibt es in der Wall Sky Lounge eine besondere Aussicht?
+    - Kann man in der Wall Sky Lounge auch Rauchen?
+    - Ist die Wall Sky Lounge für alle Gäste zugänglich?
+    - Gibt es spezielle Getränkeangebote in der Wall Sky Lounge?
+    - Wird es in der Wall Sky Lounge besondere Angebote geben?
+    - Kann man in der Wall Sky Lounge auch Essen bestellen?
+    - Gibt es in der Wall Sky Lounge eine eigene Bar?
+    - Kann man die Wall Sky Lounge für private Veranstaltungen mieten?
+    - Ist die Wall Sky Lounge abgetrennt vom restlichen Saal?
+    - Wo ist die Wall Sky Lounge?
+    - Wie viele Tickets gibt es für die Wall Sky Lounge?
+    - Für wieviele Personen ist die Wall Sky Lounge?
+    - Wie viele Personen passen in die Wall Sky Lounge?
+    - Haben sie ein Angebot für exklusive Gäste?
+    - Was ist ihr exklusivstes Angebot?
+    - Wie viel kosten die teursten Tickets?
+    - Was ist die Wall Sky Lounge?
+    - Was kostet ein Ticket für die Wall Sky Lounge?
+
+- intent: ask_payment_bar
+  examples: |
+    - Wie bezahle ich in der Bar am besten?
+    - Gibt es im Restaurant eine Option für das Bezahlen per Überweisung?
+    - Welche Zahlungsmethoden akzeptiert das Cafe?
+    - Kann ich im Restaurant auch mit meinem Smartphone bezahlen?
+    - Ist es möglich, im Restaurant mit meiner EC-Karte zu zahlen?
+    - Wie funktioniert das Bezahlen im Cafe?
+    - Akzeptiert das Restaurant auch andere Zahlungsmethoden außer Bargeld?
+    - Kann ich im Restaurant auch mit der Kreditkarte zahlen?
+    - Wie kann ich im Cafe bezahlen?
+    - Wie kann ich im Restaurant bezahlen?
+    - Gibt es in der Bar eine Option für mobiles Bezahlen?
+    - Kann ich in der Bar auch kontaktlos mit meiner Kreditkarte bezahlen?
+    - Gibt es in der Bar eine Möglichkeit, kontaktlos zu bezahlen?
+    - Kann ich in der Bar auch per Überweisung bezahlen?
+    - Ist es möglich, in der Bar mit meinem Smartphone zu bezahlen?
+    - Akzeptiert die Bar auch Kreditkarten?
+    - Kann ich in der Bar mit Karte zahlen?
+    - Gibt es eine Möglichkeit, an der Bar bargeldlos zu bezahlen?
+    - Kann ich an der Bar mit meinem Handy bezahlen?
+    - Wie kann ich an der Bar bezahlen?
+    - Muss ich für Getränke Bargeld dabei haben?
+    - Muss ich für die Bar Bargeld mitnehmen?
+    - Kann ich meine Getränke bar bezahlen?
+    - Kann ich an der Bar mit Karte bezahlen?
+    - Welche Zahlungsmöglichkeiten habe ich an der Bar?
+    - Mit was kann ich an der Bar zahlen?
+- intent: ask_payment_ticketbox
+  examples: |
+    - Muss ich die Karten im Theater bar bezahlen?
+    - Kann ich alle Karten bar bezahlen?
+    - Wie kann ich im Theater die Karten bezahlen?
+    - Welche Möglichkeiten habe ich, um meine Theaterkarten zu bezahlen?
+    - Kann ich im Theater auch bar bezahlen?
+    - Welche Zahlungsarten sind im Theater verfügbar?
+    - Kann ich im Theater auch per Smartphone bezahlen?
+    - Gibt es im Theater auch die Möglichkeit, mit Debitkarte zu bezahlen?
+    - Akzeptiert das Theater auch kontaktlose Zahlungsmethoden?
+    - Wie kann ich meine Tickets im Theater bezahlen?
+    - Welche Zahlungsoptionen stehen mir an der Theaterkasse zur Verfügung?
+    - Kann ich meine Karten an der Theaterkasse mit Kreditkarte bezahlen?
+    - Welche Zahlungsmethoden akzeptiert das Theater an der Kasse?
+    - Welche Zahlungsmöglichkeiten habe ich für Karten an der Theaterkasse?
+    - Wie kann ich die Tickets an der Theaterkasse bezahlen?
+    - Wie kann ich vor Ort bezahlen?
+    - Kann ich vor Ort mit Karte zahlen?
+    - Muss ich vor Ort bar zahlen?
+- intent: ask_payment_webshop
+  examples: |
+    - Kann ich meine Rechnung auch später bezahlen?
+    - Gibt es noch andere Zahlungsmöglichkeiten außer Überweisung und Kreditkarte?
+    - Ist es möglich das Geld für die Karten zu überweisen?
+    - Kann ich auch per PayPal bezahlen?
+    - Mit was kann ich online zahlen?
+    - Wie kann ich die Tickets online bezahlen?
+- intent: ask_payment_callcenter
+  examples: |
+    - Wie kann ich telefonisch zahlen?
+    - Sind Barzahlungen für telefonisch bestellte Tickets an einem anderen Ort als der Vorverkaufsstelle möglich?
+    - Kann ich telefonisch bestellte Tickets mit einer Debitkarte bezahlen?
+    - Kann ich die Karten per Lastschrift kaufen, wenn ich sie telefonisch bestelle?
+    - Sind Zahlungen per PayPal für telefonische Ticketkäufe möglich?
+    - Ist es möglich, telefonisch bestellte Tickets in bar zu bezahlen?
+    - Kann ich auch per Überweisung bezahlen, wenn ich Tickets telefonisch bestelle?
+    - Kann ich die Tickets mit Kreditkarte bezahlen, wenn ich sie telefonisch bestelle?
+    - Muss ich meine Kreditkarteninformationen telefonisch angeben, um Tickets zu kaufen?
+    - Welche Zahlungsarten sind für telefonische Ticketkäufe verfügbar?
+    - Kann ich meine Telefon-Tickets auch an der Kasse im Theater bezahlen?
+    - Wie funktioniert die Bezahlung von Tickets, die ich telefonisch bestellt habe?
+    - Gibt es eine Möglichkeit, Tickets telefonisch per Rechnung zu bezahlen?
+    - Kann ich telefonisch bestellte Tickets online bezahlen?
+    - Wie bezahle ich telefonisch Tickets?
+    - Welche Zahlungsmöglichkeiten habe ich über das Telefon?
+    - Wie kann ich bezahlen wenn ich meine Karten über das Telefon kaufe?
+    
+- intent: ask_directions
+  examples: |
+    - Wie weit ist es zu Fuß von der nächsten S-Bahn-Station?  
+    - Ist es möglich, mit dem Fahrrad zu Ihnen zu kommen?  
+    - Welche Buslinien halten in Ihrer Nähe?  
+    - Wie lange dauert die Fahrt von der Innenstadt zu Ihnen?  
+    - Gibt es eine direkte Verbindung zum Brandenburger Tor?  
+    - Welche Verkehrsmittel kann ich nutzen, um zu Ihnen zu gelangen?  
+    - Wie komme ich am schnellsten vom Alexanderplatz zu Ihnen? 
+    - Wie kann ich anreisen? 
+    - Wie komme ich zum Friedrichstadt-Palast?
+    - Ist der Palast zu Fuß erreichbar?
+    - Können Sie mir sagen, wie ich zum Palast gelangen kann?
+    - Welche Route ist am besten, um zum Palast zu gelangen?
+    - Gibt es öffentliche Verkehrsmittel, um zum Palast zu gelangen?
+    - Wie weit ist der Palast vom Bahnhof entfernt?
+    - Gibt es eine Bushaltestelle in der Nähe des Palastes?
+    - Wie lange dauert es, um zum Palast zu gelangen?
+    - Könnten Sie mir bitte den Weg zum Palast erklären?
+    - Kannst du mir den Weg zum Palast erklären?
+    - Wie erreiche ich den Palast?
+    - Wie erreiche ich den Palast mit den öffentlichen Verkehrsmitteln?
+    - Welche U-Bahn-Linie bringt mich zu euch?
+    - Wie komme ich am besten zum Palast?
+    - Könnt ihr mir sagen, welche Buslinie ich nehmen muss, um zum Palast zu gelangen?
+    - Welche öffentlichen Verkehrsmittel bringen mich zu meinem Ziel?
+    - Könnt ihr mir sagen, welches die nächstgelegene U-Bahn-Station ist?
+    - Gibt es einen Bus, der zu euch führt?
+    - Wie erreiche ich euch mit Öffentlichen Verkehrsmitteln?
+    - Könntest du mir sagen, wie ich am besten zu euch komme?
+    - Wie sieht die Route zum Palast aus?
+    - Ich kenne mich hier nicht aus. Könntest du mir helfen, den Weg zu finden?
+    - Kannst du mir sagen, wie ich zu euch gelange?
+    - Wie finde ich den Palast?
+    - Ich bräuchte eine Wegbeschreibung, bitte.
+    - Könnten Sie mir bitte den Weg erklären?
+    - Kannst du mir den Weg zu Palast beschreiben?
+    - Wie komme ich zu euch?
+- intent: ask_audiodescription
+  examples: |
+    - Gibt es ein Angebot für Blinde?
+    - Können Blinde die Show besuchen?
+    - Wann kann ich die nächste Vorstellung mit Audiodeskription sehen?
+    - Gibt es bald eine Show mit speziellen Diensten für Blinde?
+    - Wann wird die nächste Show für Sehbehinderte zugänglich sein?
+    - Wann ist die nächste Veranstaltung mit Audiodeskription geplant?
+    - Welche Unterstützung gibt es für sehbehinderte Gäste?
+    - Gibt es spezielle Angebote für sehbehinderte Zuschauer?
+    - Wann wird die nächste Audiodeskription angeboten?
+    - Gibt es eine Vorstellung mit Audiodeskription in Kürze?
+    - Wann kann ich die nächste Audiodeskription besuchen?
+    - Gibt es bald eine Audiodeskription?
+    - Wann ist wieder Audiodeskription?
+    - Wann ist die nächste Vorstellung mit Audiodeskription?
+    - Wann findet die nächste Audiodeskription statt?
+    - Bietet die Show spezielle Dienste für Sehbehinderte?
+    - Wie können Blinde die Show erleben?
+    - Gibt es eine Audiodeskription für die Veranstaltung?
+    - Ist die Show für sehbehinderte Menschen geeignet?
+    - Welche Optionen gibt es für Blinde, um die Show zu verfolgen?
+    - Wie werden Blinde bei der Show unterstützt?
+    - Gibt es Hilfsmittel für Blinde bei der Show?
+    - Werden Sehbehinderte bei der Veranstaltung berücksichtigt?
+    - Wie funktioniert die Audiodeskription bei der Show?
+    - Können Blinde die Show gucken?
+    - Gibt es spezielle Angebote für Blinde?
+    - Was ist Audiodeskription?
+    - Gibt es Audiodeskription?
+    - Was ist die Audiodeskription?
+    - Gibt es besondere Angebote bzw. Sitzplätze für Blinde?
+- intent: ask_accessibility
+  examples: |
+    - Ich benötige einen Platz den man mit einem Rollator erreicht
+    - Guten Abend, ich stehe vor dem Palast, Wie komme ich mit meinem Rollator hinein?
+    - Wo ist der barrierefreie Eingang?
+    - Befindet sich ein  Fahrstuhl im Haus?
+    - Fahrstuhl oder Rolltreppen vorhanden?
+    - Seid ihr barrierefrei?
+    - Ich sitze im Rohlstuhl. Kann ich Reihe 4 im Hochparkett buchen?
+    - Ist der Veranstaltungsort rollstuhlgerecht?
+    - Kann ich im Rollstuhl die Veranstaltung besuchen?
+    - Wie komme ich als Rollstuhlfahrer hinein?
+    - Gibt es einen barrierefreien Zugang?
+    - Kann ich mit einem Rollstuhl reinkommen?
+    - Wo befinden sich die Rollstuhlplätze?
+    - Wie viele Rollstuhlplätze gibt es im Theater?
+    - Sind Rollstuhlplätze verfügbar?
+    - Gibt es spezielle Plätze für Rollstuhlfahrer?
+    - Wie viele Sitzplätze gibt es für Rollstuhlfahrer im Saal?
+    - Gibt es spezielle Sitzplätze für Personen mit körperlichen Einschränkungen?
+    - Ich habe eine Gehbehinderung, gibt es einen Aufzug im Gebäude?
+    - Gibt es Rollstuhlzugang zu allen Bereichen des Gebäudes?
+    - Sind die Toiletten barrierefrei?
+    - Sind Ihre Räumlichkeiten für Menschen mit Gehbehinderungen zugänglich?
+    - Ist der Palast barrierefrei zu erreichen?
+    - Gibt es Sitzplätze für Rollstuhlfahrer?
+    - Ist die Veranstaltung barrierefrei?
+- intent: ask_entry_time
+  examples: |
+    - Wann ist Eintritt für falling in love heute?
+    - Wann kann man ins Gebäude?
+    - Wann ist der Einlass für das Event?
+    - Wann öffnen die Türen?
+    - Wann ist der Zugang erlaubt?
+    - Wann dürfen die Gäste rein?
+    - Wann beginnt der Einlass für die Aufführung?
+    - Ab wann ist der Eintritt möglich?
+    - Wann öffnet der Veranstaltungsort?
+    - Ab wann kann man reingehen?
+    - Zu welcher Zeit beginnt der Einlass?
+    - Welche Uhrzeit ist Einlass 
+    - Wann ist frühster Einlass 
+    - Wann dürfen die Zuschauer ins Theater?
+    - Wann öffnen die Türen für die Theateraufführung?
+    - Wann beginnt der Einlass für das Theaterstück?
+    - Zu welcher Uhrzeit beginnt der Einlass?
+    - Um wie viel Uhr öffnen die Türen für die Vorstellung?
+    - Was ist die Einlasszeit für die Vorstellung?
+    - Wann kann man ins Theatergebäude?
+    - Wann ist Einlass im Theater?
+    - Um welche Zeit öffnen die Türen des Theaters?
+    - Wann darf man ins Theater rein?
+    - Zu welcher Uhrzeit öffnen die Türen des Theaters?
+    - Zu welcher Uhrzeit kann man in Palast hinein?
+    - Wie lange vor Beginn der Vorstellung kann man ins Theater?
+    - Wann öffnen die Tore für die Besucher der Vorstellung?
+    - Wann beginnt der Einlass?
+    - Wie lange vor der Vorstellung muss ich da sein?
+    - Wann kann ich in den Saal?
+    - Wie viel vor Beginn kann ich in den Saal?
+    - Wie viel Zeit habe ich vor Beginn, um in den Saal zu kommen?
+    - Wann öffnen die Türen zum Saal?
+    - Ab wann kann ich meinen Platz im Saal einnehmen?
+    - Wann startet der Einlass in den Veranstaltungssaal?
+    - Wie viel Zeit sollte ich vor der Vorstellung am Veranstaltungsort sein?
+    - Wie lange vor der Vorstellung sollte ich am Veranstaltungsort sein?
+    - Wann öffnet das Foyer?
+    - Ab wann ist das Foyer geöffnet?
+    - Ab wann kann man in das Foyer?
+    - Ab wann kann man in der Vorstellungssaal?
+    - Ab wann ist der Eingangsbereich geöffnet?
+    - Wie viel Zeit sollte ich einplanen, um vor der Vorstellung im Theater zu sein?
+    - Wann beginnt der Einlass für die Vorstellung?
+    - Ab wann kann man einen Platz im Theater einnehmen?
+- intent: complain
+  examples: |
+    - Warum zeigt Ihr so eine Scheisse?
+    - Ich würde lieber Farbe beim trocknen zuschauen anstatt mir diese blöde Show wieder anzusehen!
+    - Ich hasse die Show!
+    - Können die Leute auf der Bühnen überhaupt irgendwas?
+    - Wow, was für ein blöder Scheiss den Ihr auf der Bühne zeigt!
+    - Das war super mies die Show
+    - Das war echt schlecht was Ihr gezeigt habt!
+    - Was für eine riesen Scheisse auf der Bühne!
+    - Die Show ist echt mies!
+    - So eine Scheiss Veranstaltung!
+    - Was für eine kack Show!
+    - Die Show war lächerlich!
+    - Leider ist dies die schlechteste Show aller Zeiten
+    - Der Service war ungenügend.
+    - Ich habe etwas zu beanstanden.
+    - Ich bin nicht glücklich mit dem Ergebnis.
+    - Das war wirklich schlecht.
+    - Ich bin sehr unzufrieden mit der Leistung.
+    - Es hat mir überhaupt nicht gefallen.
+    - Ich bin mit dem Service nicht zufrieden.
+    - Der Service hat mich enttäuscht.
+    - Ich möchte eine Beschwerde einreichen.
+    - Ich habe eine Beschwerde.
+    - Ich will mich beschweren.
+    - Ich bin unzufrieden.
+    - Es war alles scheisse.
+    - Ich fand den Service Mist
+    - Ich bin nicht zufrieden.
+    - Ich war am Samstag zur Nachmittags Veranstaltung. Es war sehr störerend wenn Zuschauer welche zu spät kamen an ihre Plätze geführt worden sind.
+- intent: ask_cloakroom
+  examples: |
+    - Wie teuer ist die Garderobe?
+    - Wo ist die Garderobe hier?
+    - Wo kann ich meine Sachen während der Veranstaltung verstauen?
+    - Kann ich meinen Regenschirm hier lassen?
+    - Gibt es einen Aufbewahrungsort für meine Jacke?
+    - Wo kann ich meine Tasche unterbringen?
+    - Gibt es einen Platz für meine Gegenstände während der Veranstaltung?
+    - Wo kann ich meinen Mantel ablegen?
+    - Wo kann ich meine Handschuhe aufbewahren?
+    - Gib es eine Garderobe vor Ort?
+    - Kann ich meinen Hut hier lassen?
+    - Wo ist der nächste Garderobenständer?
+    - Gibt es eine Möglichkeit, meine Tasche sicher zu verstauen?
+    - Kann ich meine Jacke hier lassen?
+    - Muss ich für die Garderobe extra bezahlen?
+    - Wie viel kostet mich die Garderobe?
+    - Darf ich meine Tasche mit in den Saal nehmen?
+    - Wo kann ich meinen Regenschirm aufbewahren?
+    - Kann ich meine Jacke irgendwo hinhängen?
+    - Wo kann ich meinen Rucksack abstellen?
+    - Kann ich meine Tasche irgendwo sicher verstauen?
+    - Ist es erlaubt, Taschen in den Konzertsaal mitzunehmen?
+    - Wo kann ich meine Jacke aufbewahren?
+    - Wohin soll ich meine Regenschirme abgeben?
+    - Gibt es eine Möglichkeit, meine Sachen sicher zu verwahren?
+    - Wo kann ich meine Tasche abstellen?
+    - Muss ich meine Jacke an der Garderobe abgeben?
+    - Darf ich mein Gepäck mit in die Vorstellung nehmen?
+    - Was darf ich mit in den Saal nehmen?
+    - Kann ich meine Jacke an der Garderobe abgeben?
+    - Wie viel kostet die Garderobe?
+    - Gibt es eine Garderobe?
+- intent: ask_parking
+  examples: |
+    - Wie kann ich das Park Ticket erwerben, Eintrittskarten für Sylvester im Friedrichstadtpalast habe ich.
+    - Wo parke ich am Besten?
+    - Wo kaufe ich einen Parkschein?
+    - Wo kann ich ein Parkticket kaufen?
+    - Guten Tag Ich hätte gerne ein Parkticket für den 16.12.,für die Vorstellung 17.30
+    - Ich möchte gerne einen Parkplatz reservieren für den 05.11.2024 für die Abendshow ist das möglich?
+    - Ich möchte gern am 19.05.2025 am Haus parken habe Karten um 19Uhr
+    - Ich habe den Parkplatz gebucht. Wie lange dürfe ich dort stehen?
+    - Möchte Parken auf dem Friedrichpalastgelände. Eine Person ist stark gebehindert,darum das nahe parken ,wegen kurzer Wege. Wo kann ich das anmelden?
+    - Möchte Parken auf dem Friedrichpalastgelände.
+    - Ich suche einen Parkplatz in der Nähe des Friedrichstadt-Palasts.
+    - Wo genau sind die Parkplätze beim Friedrichstadt-Palast?
+    - Gibt es spezielle Parkplätze für Rollstuhlfahrer am Friedrichstadt-Palast?
+    - Wie finde ich die Parkplätze am Friedrichstadt-Palast?
+    - Haben Sie Parkplätze für Gäste mit Behinderungen am Friedrichstadt-Palast?
+    - Wo kann ich mein Auto in der Nähe des Friedrichstadt-Palasts abstellen?
+    - Ich brauche Informationen zu Parkmöglichkeiten am Friedrichstadt-Palast.
+    - Gibt es reservierte Parkplätze für Behinderte am Friedrichstadt-Palast?
+    - Können Sie mir sagen, wo ich am Friedrichstadt-Palast parken kann?
+    - Ich habe eine Veranstaltung im Friedrichstadt-Palast gebucht und benötige einen Parkplatz.
+    - Ich bin behindert und habe eine Veranstaltung in Ihrem Hause gebucht. Ich möchte gerne einen Parkplatz dazu buchen.
+    - Wo sind die parklpätze am friedrichstadpalastt
+    - Wo sind die Parkplätze am Palast?
+    - Ist es nicht mehr möglich, einen Parkplatz im Parkhaus zu reservieren?
+    - Wir möchten zu unserer Bestellung einen Parkplatz buchen.
+    - Gibt es eine Tiefgarage?
+    - Wo kann ich mein Auto parken?
+    - Kann ich hier mein Auto stehen lassen?
+    - Wo ist der nächste Parkplatz?
+    - Gibt es hier eine Parkgarage?
+    - Wo darf ich mein Auto abstellen?
+    - Ist es möglich, in der Nähe zu parken?
+    - Wo finde ich einen Parkplatz?
+    - Wo kann ich parken?
+    - Gibt es Parkmöglichkeiten?
+    - habt ihr Partplätze in der Nähe?
+- intent: ask_foodanddrink
+  examples: |
+    - Was verstehe ich unter Canape Variationen 
+    - Wie reservieren einen Tisch
+    - was kostet ein glas weißwein in der pause?
+    - Wo ist das La Diva 
+    - Wo befindet sich das Restaurant 
+    - Können wir für heute Abend schon einen Tisch reservieren für die Pause 
+    - ist die bar geöffnet?
+    - Ist es möglich, dass wir vor und während der Vorstellung einen Imbiss zu ca. 18:30 Uhr einnehmen könnten?
+    - Kann ich für die Showpause online Getränke etc. bestellen?
+    - Darf man eine Flasche Wasser mitbringen 
+    - Wie ist die Telefonnummer der Gastronimie'? 
+    - Pause Vorbestellung? 
+    - Wie bestelle ich schon vor dem Einlass für die Pause?
+    - Wie ist die Telefonnummer der Gastronomie?
+    - ich möchte in der pause ein glas weisswein trinken. was muss ich bezahlen?
+    - was kostet ein glas weißwein in der pause
+    - Ich möchte einen Tisch reservieren 
+    - Kann ich etwas für die Pause vorbestellen?
+    - Gibt es Wurst im Friedrichstadt-Palast?
+    - gibt es im Palast auch Eis?
+    - Gibt es Wurst im Palast?
+    - Darf ich mir was zu essen in den Saal  nehmen?
+    - wo kann ich einen Tisch für die Pause reservieren
+    - Kann ich Getränke bei Ihnen vorab für die Pause bestellen?
+    - Gibt es hier auch glutenfreie Optionen?
+    - Was könnt ihr als vegetarisches Gericht empfehlen?
+    - Wie teuer ist ein Bier?
+    - Wie viel kostet ein Espresso?
+    - Welche Sorten Eis habt ihr?
+    - Welche Getränke habt ihr im Angebot?
+    - Welche Kuchen bieten Sie an?
+    - Was kostet ein Radeberger?
+    - was kostet ein Weizen?
+    - wie teuer ist ein Radler?
+    - Kannst du mir die Speisekarte geben?
+    - Wo finde ich eine Liste mit den Speisen und Getränken, die im Theater angeboten werden?
+    - Darf man während der Vorstellung essen oder trinken?
+    - Gibt es im Theater eine Möglichkeit, etwas zu trinken zu kaufen?
+    - Kann ich vor der Vorstellung noch etwas zu Essen bekommen?
+    - Gibt es Snacks oder Getränke, die während der Vorstellung erlaubt sind?
+    - Gibt es vegetarische Optionen im Theater?
+    - Kann man während der Vorstellung etwas zu Essen bestellen?
+    - Wo kann ich im Theater etwas zu Essen kaufen?
+    - Gibt es eine Bar im Theater?
+    - Ist es erlaubt, Essen und Trinken ins Theater mitzubringen?
+    - Was kann man dort zu Essen und Trinken kaufen?
+    - Darf man Essen und Trinken mit in die Vorstellung nehmen?
+- intent: ask_backstage_tours
+  examples: |
+    - Kann man auch real hinter die Kulissen blicken?
+    - Hallo, gibt es Führungen im Friederichstadtpalast?
+    - wie kann backstage buchen?
+    - Gibt es Backstageführungen?
+    - ich möchte gerne ein Ticket für eine Backstage Führung kaufen
+    - Ticket für eine Backstageführung kaufen
+    - ich möchte gerne ein Ticket für eine Backend Führung kaufen
+    - Wie kann ich die Maske- und Frisierbereiche besichtigen?
+    - Kann ich einen Blick in die Requisitenkammer werfen?
+    - Gibt es eine Führung durch das Tonstudio?
+    - Könnt Ihr mir zeigen, wie die Kostüme hergestellt werden?
+    - Wie kann ich die Bühnentechnik besichtigen?
+    - Kann ich einen Blick in die Garderoben werfen?
+    - Gibt es eine Tour durch die Produktionsräume?
+    - Wie kann ich die backstage-Bereiche besichtigen?
+    - Kann ich einen Blick hinter die Kulissen werfen?
+    - Könnt Ihr mir eine Führung durch die Bühnenbereiche geben?
+    - Habt Ihr Führungen?
+    - Wie komme ich Backstage?
+    - Kann ich Backstage gucken?
+    - Kann ich hinter die Kulissen schauen?
+    - Gibt es eine Backstage führung im Friedrichstadt-palast?
+- intent: ask_soundtracks
+  examples: |
+    - Music playlist
+    - Wo kann man die Musik hören?
+    - Wo kann man die Musik kaufen?
+    - Wo kann ich die digitalen Versionen der Show finden?
+    - Kann man Videokassetten von alten Shows kaufen?
+    - Habt ihr alte VHS Aufnahmen?
+    - Gibt es die Show als Blue-Ray?
+    - Gibt es eine Musik- CD zur Show?
+    - Gibt es eine Möglichkeit, den Soundtrack zu teilen?
+    - Ich würde gerne mehr über den Soundtrack erfahren.
+    - Wo kann ich den Soundtrack streamen?
+    - Ich interessiere mich für den Soundtrack.
+    - Habt Ihr den Soundtrack auf Lager?
+    - Gibt es eine Möglichkeit, den Soundtrack herunterzuladen?
+    - Wo kann ich den Soundtrack kaufen?
+    - Ich würde gerne den Soundtrack hören.
+    - Könnt Ihr mir den Soundtrack empfehlen?
+    - Gibt es einen Soundtrack?
+    - Ich suche den Soundtrack!
+    - Wo finde ich den Soundtrack?
+    - Habt Ihr nen Soundtrack?
+    - Gibt es die Shows auch auf YouTube?
+    - Kann ich die Show auch streamen?
+    - Habt Ihr DVDs?
+    - Gibt es DVD`s?
+    - Wo kann ich die DVD der Show bestellen?
+    - Wo kann ich die digitale Version der Vorführung erwerben?
+    - Kann ich die Vorstellung online streamen?
+    - Gibt es eine Möglichkeit, die Vorführung herunterzuladen?
+    - Wo kann ich die DVD der Vorstellung kaufen?
+- intent: ask_lost_found
+  examples: |
+    - Portemonaie verloren
+    - Ich war gestern Nachmittag in Ihrem Theater und vermute, dass ich mein Portemonaie bei Ihnen verloren habe.
+    - Ich war am Freitag bei euch vor Ort. Habe ich dort meinen Schlüssel mit Hausausweis Bundestag verloren? Konnten Sie etwas finden?
+    - Ist mein Handschuh bei Ihnen aufgetaucht?
+    - Ring verloren
+    - Fundbüro
+    - Wurde meine Tasche bei Ihnen abgegeben?
+    - Ist meine Jacke bei Euch gefunden worden?
+    - Haben Sie meine Sonnenbrille gesehen?
+    - Ist mein Rucksack bei Ihnen abgegeben worden?
+    - Ist mein Mantel bei Euch aufgetaucht?
+    - Habt Ihr mein Handy gefunden?
+    - Wurde mein Regenschirm bei Euch abgegeben?
+    - Wurde mein Schal bei Euch gefunden?
+    - Meine Mütze habe ich vergessen?
+    - Meine Brieftasche ist verschwunden.
+    - Habe gestern mein Portemonnaie bei Euch liegen lassen.
+    - Meine Tasche ist weg, kann mir jemand helfen?
+    - Ich habe meine Sonnenbrille verloren, habt ihr sie gefunden?
+    - Ich habe meinen Regenschirm irgendwo vergessen.
+    - Kann mir jemand sagen, wo mein Rucksack ist?
+    - Ich kann meinen Ausweis nicht finden.
+    - Ich denke, ich habe mein Handy verloren.
+    - Habt Ihr meinen Schlüssel gefunden?
+    - Ich glaube ich habe meine Jacke bei euch liegen gelassen.
+    - Ich habe mein Portemonaie verloren.
+    - Ich habe meine Geldbörse verloren.
+    - Ich habe etwas verloren, was kann ich tun?
+- intent: ask_hotel
+  examples: |
+    - Ich brauche eine Unterkunft für eine Nacht, kannst du mir helfen?
+    - Wo kann ich in der Nähe der Show übernachten?
+    - Gibt es eine Liste mit Hotels in der Umgebung?
+    - Kannst du mir bei der Suche nach einem Hotel helfen?
+    - Wo kann ich eine Unterkunft in der Nähe des Veranstaltungsorts finden?
+    - Ich suche eine Übernachtungsmöglichkeit nach der Show.
+    - Kannst du mir sagen, welche Hotels in der Umgebung verfügbar sind?
+    - Ich brauche eine Empfehlung für ein Hotel in der Nähe.
+    - Wo finde ich eine Unterkunft für die Nacht?
+    - Wo kann ich nach der Show schlafen?
+    - Gibt es eine Liste mit verfügbaren Hotels?
+    - Kannst du mir helfen, eine passende Unterkunft zu finden?
+    - Kann ich auch eine Übernachtung buchen?
+    - Gibt es Unterkünfte in der Umgebung?
+    - Ich suche eine Unterkunft.
+    - Sind Übernachtungen im Paket enthalten?
+    - Kann ich eine Übernachtungsmöglichkeit hinzufügen?
+    - Kann man eine Hotelübernachtung dazubuchen?
+    - Ich brauche ein Hotel.
+    - Kannst du mir ein Hotel empfehlen?
+    - Gibt es Hotels in der Nähe?
+    - Wo kann ich nach der Vorstellung übernachten?
+    - Gibt es Tickets mit Hotel?
+    - Kann ich bei euch ein Hotel buchen?
+    - Kann ich ein Hotel dazubuchen?
+- intent: ask_induction_loop
+  examples: |
+    - Gibt es besondere Plätze für Hörbehinderte?
+    - Wo sind die Plätze für die  Induktionsschleife?
+    - Wo sind Plätzer mit der  Induktionsschleife?
+    - Gibt es spezielle Plätze für Hörgeräteträger?
+    - Was sind die Vorteile von Induktionsschleifen?
+    - Welche Technologien helfen bei Hörproblemen?
+    - Was sind Induktionsschleifen?
+    - Gibt es Systeme für Hörgeräteträger?
+    - Wo finde ich Informationen über Induktionsschleifen?
+    - Im welchen Reihen befindet sich die Induktionsschleife
+    - Was muss ich über induktive Höranlagen wissen?
+    - Welche Unterstützung gibt es für Hörgerätbenutzer?
+    - Haben Sie Hilfeleistungen für Hörgeräteträger?
+    - Ich trage ein Hörgerät, könnten Sie mir assistieren?
+    - Bieten Sie Unterstützung für Menschen mit Hörgeräten an?
+    - Gibt es bei Ihnen Hilfe für Hörgeräteträger?
+    - Ich habe ein Hörgerät, können Sie mir helfen?
+    - Wie geht das mit der Telefonspule beim Hörgerät?
+    - Wie wird die T-Spule verwendet?
+    - Was sind Induktive Höranlagen?
+    - Ich trage ein Hörgerät.
+    - Unterstützen Sie Hörgeräte?
+    - Was ist die Induktionsschleife?
+    - Wie geht das mit Hörgerät im Friedrichstadt-Palast?
+- intent: ask_program_book
+  examples: |
+    - Wo kann ich das Aufwendige Programmheft bestellen 
+    - Wo kann ich auf der Homepage das programmheft  bestellen  ?
+    - Mochte gerne eine Programm Brochure zu Falling in Love kaufen
+    - Gibt es ein Programmheft von Falling in Love, das ich ausdrucken kann?
+    - Ich suche ein Programmheft von Falling in Love als PDF.
+    - würde vorab noch gerne ein Programmheft ordern
+    - Wieviel kostet die Broschüre zu Falling in Love
+    - Kann man online Programm kaufen
+    - Ich bräuchte ein Programmheft.
+    - Könnten Sie mir sagen, wo ich ein Programmheft finden kann?
+    - Wäre es möglich, mir ein Programmheft zukommen zu lassen?
+    - Darf ich fragen, wo ich ein Programmheft bekommen kann?
+    - Gibt es die Möglichkeit, ein Programmheft zu erwerben?
+    - Kann ich ein Programmheft erwerben?
+    - Ich interessiere mich für ein Programmheft.
+    - Wo kann ich ein Programmheft kaufen?
+    - Könnten Sie mir ein Programmheft zur Verfügung stellen?
+    - Ich benötige ein Programmheft.
+    - Ist es möglich, ein Programmheft zu bestellen?
+    - Ich würde gerne ein Programmheft erwerben.
+    - Ich will ein Programmheft kaufen!
+    - Kannst du mir ein Programmheft senden?
+    - Was kostet ein Programmheft?
+    - Gibt es ein Programmheft?
+- intent: ask_dresscode
+  examples: |
+    - was soll ich heute zur Show anziehen?
+    - Muss ich mich besonders schick anziehen?
+    - Wie sieht die Dresscode aus?
+    - Kann ich in legerer Kleidung erscheinen?
+    - Gibt es eine Kleiderordnung?
+    - Wie soll ich mich kleiden?
+    - Sind Jeans erlaubt?
+    - Welche Kleidung wird empfohlen?
+    - Ist es okay, wenn ich casual gekleidet bin?
+    - Gibt es Vorschriften bezüglich der Kleidung?
+    - Darf ich in Jogginghose kommen?
+    - Muss ich einer Kleiderordnung folgen?
+    - Darf ich anziehen was ich möchte?
+    - Was sollte ich nicht anziehen?
+    - Sind bestimmte Klamotten verboten?
+    - Muss ich bestimmte Klamotten tragen?
+    - Gibt es einen Dresscode?
+
+- intent: show_spielzeit
+  examples: |
+    - Wie lange läuft die [Falling in Love](show_name) Grand Show noch?
+    - Wie lange läuft die [Falling](show_name) Grand Show noch?
+    - Wie lange läuft die aktuelle Grand Show noch?
+    - Bis wann wird die [Falling in Love](show_name) Grand Show gespielt?
+    - Wann endet die [Falling](show_name) Grand Show?
+    - Wie viel Zeit bleibt noch für die [Falling in Love](show_name) Grand Show?
+    - Bis wann kann man die [Falling in Love](show_name) Grand Show besuchen?
+    - Wann ist die letzte Vorführung der [Falling in Love](show_name) Show?
+    - Wie lange wird [Falling](show_name) noch aufgeführt?
+    - Wann läuft die [Falling in Love](show_name) Grand Show aus?
+    - Wie viele Vorstellungen der [Falling](show_name) sind noch geplant?
+    - Wann ist die finale Aufführung von [Falling in Love](show_name)?
+    - Wann schließt die [Falling in Love](show_name) Saison?
+    - Bis welches Datum geht die [Falling in Love](show_name) Show?
+    - Wie lange haben wir noch Zeit, die [Falling in Love](show_name) zu sehen?
+    - Bis wann muss ich die [Falling](show_name) gesehen haben?
+    - Wann ist die letzte Chance, [Falling in Love](show_name) zu sehen?
+- intent: show_dauer
+  examples: |
+    - Wie lange dauert die [Falling in Love](show_name) Grand Show?
+    - Wie lange geht die [Falling in Love](show_name) Grand Show?
+    - Wie lange dauert die Aufführung der [Falling in Love](show_name) Grand Show?
+    - Was ist die Länge der [Falling in Love](show_name) Grand Show?
+    - Wie viel Zeit sollte ich für die [Falling in Love](show_name) Grand Show einplanen?
+    - Wie lange wird die [Falling in Love](show_name) Grand Show dauern?
+    - Wie lange dauert die Grand Show?
+    - Wie lange geht die Grand Show?
+    - Wie lange dauert die aktuelle Grand Show?
+    - Was ist die Länge der Grand Show?
+    - Wie viel Zeit sollte ich für die Grand Show einplanen?
+    - Wie lange wird die aktuelle Grand Show dauern?
+    - Wie lange dauert eine Aufführung der Grand Show?
+    - Wie lange dauert es, die Grand Show zu sehen?
+- intent: ask_filming_during_show
+  examples: |
+    - Kann man viedeo machen?
+    - Kann man im Palast viedeos machen oder Fotos ja oder nein?
+    - Darf ich fotografieren? 
+    - Darf ich während der Show ein paar Aufnahmen machen?
+    - Kann ich während der Inszenierung ein paar Fotos schießen?
+    - Ist es erlaubt, während des Stücks ein paar Schnappschüsse zu machen?
+    - Ich würde gerne ein paar Fotos von der Aufführung machen. Ist das erlaubt?
+    - Kann ich während der Vorführung ein paar Bilder machen?
+    - Darf ich während der Performance ein paar Fotos aufnehmen?
+    - Wäre es möglich, während der Show ein paar Aufnahmen zu machen?
+    - Kann ich während der Inszenierung ein paar Schnappschüsse knipsen?
+    - Ist es gestattet, während der Aufführung ein paar Bilder zu machen?
+    - Darf ich während der Vorstellung ein paar Fotos mit meinem Smartphone schießen?
+    - Ist es ok, wenn ich während der Performance ein paar Fotos mit meinem Handy mache?
+    - Kann ich während der Show ein paar Schnappschüsse machen?
+    - Ich möchte gerne ein paar Bilder von der Aufführung machen. Ist das erlaubt?
+    - Kann ich während des Stücks mein Handy benutzen, um ein paar Fotos zu machen?
+    - Ich würde gerne ein paar Aufnahmen von der Performance machen. Ist das erlaubt?
+    - Darf ich während der Aufführung mein Handy verwenden, um ein paar Bilder zu machen?
+    - Kann ich während der Show Fotos mit meinem Handy machen?
+    - Darf ich während der Vorstellung mein Handy benutzen, um ein paar Aufnahmen zu machen?
+    - Ich würde gerne ein paar Schnappschüsse von der Aufführung machen, ist das ok?
+    - Kann ich während der Performance Fotos machen, solange ich niemanden störe?
+    - Ist es erlaubt, die Show auf Video aufzunehmen?
+    - Ich möchte einige Erinnerungen von der Vorstellung festhalten.
+    - Darf ich während der Show mein Handy benutzen, um Fotos zu machen?
+    - Kann ich die Performance aufnehmen?
+    - Ich würde gerne ein paar Bilder von der Show machen.
+    - Ist es gestattet während der Aufführung zu fotografieren?
+    - Ist es erlaubt während der Show Fotos zu machen?
+    - Ich möchte die Vorstellung aufzeichnen.
+    - Dürfen Videos gemacht werden?
+    - Kann ich die Show filmen?
+    - Darf ich während der Vorstellung Fotos machen?
+- intent: new_grand_show
+  examples: |
+    - Ab wann wird es eine neue Grand Show geben?
+    - Ab wann gibt es eine neue Grand Show?
+    - Wann startet die nächste Grand Show?
+    - Ab wann läuft die nächste Grand Show?
+    - Gibt es bald eine neue Grand Show?
+    - Wann wird die aktuelle Show durch eine neue ersetzt?
+    - Wann ist die Premiere der nächsten Grand Show?
+    - Ab wann kann man Tickets für die neue Grand Show kaufen?
+    - Wann wird die nächste große Show angekündigt?
+    - Gibt es ein Datum für die nächste Grand Show?
+    - Wie sieht der Zeitplan für die nächste Show aus?
+    - Ist das Startdatum für die nächste Show schon bekannt?
+    - Wann beginnt die neue Saison der Grand Show?
+    - Gibt es Neuigkeiten zu einer kommenden Show?
+    - Wann kann ich Details zur nächsten Grand Show erwarten?
+    - Werden bald neue Shows angekündigt?
+    - Wann endet die aktuelle und beginnt die nächste Show?
+    - Sind schon Termine für die neue Showreihe bekannt?
+    - Wann wird die neue Showreihe vorgestellt?
+    - Können Sie mir mehr über die kommende Grand Show erzählen?
+- intent: show_age_restriction
+  examples: |
+    - Für welches Alter empfehlen Sie die Show?
+    - Für welches Alter ist die Show?
+    - Ab welchem Alter ist die Show geeignet?
+    - Gibt es eine Altersbeschränkung für die Show?
+    - Für welches Publikum ist die Show empfohlen?
+    - Kann ich die Show mit meinem Kind besuchen?
+    - Ist die Show auch für Kinder geeignet?
+    - Ab wie vielen Jahren darf man die Show sehen?
+    - Welche Altersfreigabe hat die Show?
+    - Gibt es ein Mindestalter für die Show?
+    - Ist die Show jugendfrei?
+    - Ab welchem Alter darf man die Vorstellung besuchen?
+    - Ist die Show für alle Altersgruppen geeignet?
+    - Welches Mindestalter wird für die Show empfohlen?
+    - Gibt es altersbedingte Einschränkungen bei der Show?
+    - Kann die Show für jüngere Zuschauer unangemessen sein?
+    - Welche Altersgruppe wird für diese Show am meisten empfohlen?
+    - Ist die Show für Teenager geeignet?
+    - Können Kleinkinder in die Show mitgenommen werden?
+    - Welche Altersgruppe findet die Show am ansprechendsten?
+    - Sind Jugendliche unter 16 Jahren für diese Show zugelassen?
+- intent: check_events
+  examples: |
+    - Gibt es Veranstaltungen am [25.12.2025](event_date)?
+    - Was passiert am [01.03.2025](event_date)?
+    - Werden Events [heute](event_date) stattfinden?
+    - Zeig mir Veranstaltungen am [25-12-2025](event_date).
+    - Informiere mich über Events am [25/12/2025](event_date).
+    - Kannst du Events am [25. Dezember 2025](event_date) finden?
+    - Gibt es etwas am [Dez 25, 2025](event_date)?
+    - Suche nach Events am [25 Dez 2025](event_date).
+    - Was ist los am [01.03](event_date)?
+    - Zeig mir was am [01/03](event_date) passiert.
+    - Informiere mich über Events am [01. März](event_date).
+    - Kannst du Events am [01. Mrz](event_date) finden?
+
+- intent: ask_discount
+  examples: |
+    - Gibt es für [ADAC](discount_type: adac) Rabatte?
+    - Welche Ermäßigungen gibt es für [Schwerbehinderung](discount_type: disable)?
+    - Kann ich als [Studentin](discount_type: student) einen Rabatt bekommen?
+    - Wie hoch sind die Rabatte mit der [Berlin Welcome Card](discount_type: berlin_welcome_card)?
+    - Bieten Sie Rabatte für [PFA](discount_type: pfa) an?
+    - Welche Vergünstigungen bietet Ihre Einrichtung für [behinderte Personen](discount_type: disable) an?
+    - Bieten Sie Rabatte für [Young Ticket](discount_type: young_ticket)?
+    - Haben Sie spezielle Angebote für [Rentnerin](discount_type: senior)?
+    - Gibt es Ermäßigungen für Inhaber der [Berlin WelcomeCard](discount_type: berlin_welcome_card)?
+    - Sind Ermäßigungen für [Arbeitssuchende](discount_type: unemployed) verfügbar?
+    - Bieten Sie Sonderpreise für [Arbeitslose](discount_type: unemployed)?
+    - Können [PfA](discount_type: pfa) Ermäßigungen erhalten?
+    - Haben [Schwerbehinderte](discount_type: disable) Anspruch auf Ermäßigungen?
+    - Welche Vergünstigungen gibt es für Inhaber der [Berlin WelcomeCard](discount_type: berlin_welcome_card)?
+    - Bieten Sie Rabatte für [Young Ticket](discount_type: young_ticket)?
+    - Sind Rabatte für [Studenten](discount_type: student) verfügbar?
+    - Ich möchte Tickets mit {Rabatte} kaufen.
+    - Welche {Ermäßigungen} gibt es bei euch?
+    - Gibt es irgendwelche {Rabatte}?
+    - Haben Sie {Rabatte}?
+    - Welche {Rabatte} bieten Sie an?
+    - Wo finde ich Informationen zu {Rabatte}?
+    - Gibt es verschiedene {Rabatte}?
+    - Welche {Rabatte} kann ich in Anspruch nehmen?
+    - Haben Sie ein System für {Rabatte}?
+    - Gibt es besondere {Rabatte}?
+    - Kann ich {Rabatte} bekommen?
+    - Wie kann ich {Rabatte} erhalten?
+    - Gibt es reduzierte {Rabatte}?
+    - Welche Möglichkeiten gibt es, um {Rabatte} zu bekommen?
+    - Gibt es Rabatte für {student_regex}?
+    - Welche Ermäßigungen gibt es für {adac_regex}?
+- intent: ask_discount_adac
+  examples: |
+    - {adac_regex}
+    - Welche Ersparnisse habe ich durch meine ADAC-Mitgliedschaft?
+    - Ist die ADAC-Mitgliedschaft bei der Buchung vorteilhaft?
+    - Kann ich als ADAC-Mitglied von Sonderkonditionen profitieren?
+    - Bekomme ich als ADAC-Mitglied einen besseren Preis?
+    - Wie viel spare ich als ADAC-Mitglied bei dieser Buchung?
+    - Wie hoch ist der Preisunterschied für ADAC-Mitglieder?
+    - Welche Vergünstigungen habe ich als ADAC-Mitglied bei dieser Buchung?
+    - Sind ADAC-Mitglieder hier bevorzugt?
+    - Ist eine ADAC-Mitgliedschaft bei dieser Buchung sinnvoll?
+    - Welche Vorteile habe ich als ADAC-Mitglied bei dieser Buchung?
+    - Zahlt sich eine ADAC-Mitgliedschaft aus?
+    - Wie viel Rabatt bekomme ich als ADAC-Mitglied?
+    - Kann ich mit meiner ADAC-Mitgliedschaft sparen?
+- intent: ask_discount_disable
+  examples: |
+    - {disable_regex}
+    - Sind die Tickets für schwerbehinderte Personen in allen Sektionen ermäßigt?
+    - Wie erhalte ich einen Behindertenrabatt?
+    - Muss ich meinen Schwerbehindertenausweis vorzeigen, um den Rabatt zu erhalten?
+    - Bieten Sie auch Ermäßigungen für die Begleitpersonen von Behinderten an?
+    - Gibt es spezielle Sitze für Schwerbehinderte und deren Begleiter?
+    - Hallo ich bin behindert mit Kennzeichen B im Schwerbehindertenausweis und ich will ein Ticket kaufen mit begleiteter wie kann ich die kaufen
+    - Ich habe eine Behinderung und brauche Unterstützung bei der Grand Show
+    - Ich habe einen GdB und möchte Tickets für die Grand Show
+    - Ich habe eine Behinderung und möchte die Grand Show besuchen
+    - Wie hoch ist der Preisnachlass für Menschen mit Behinderung?
+    - Darf ich mit einem Schwerbehindertenausweis kostenlos eine Begleitperson mitnehmen?
+- intent: ask_discount_student
+  examples: |
+    - {student_regex}
+    - Auch für niederländische Studenten?
+    - Bis zu welchem Alter gelten Kindertickets?
+    - Eintritt Show Falling in Love für Schüler
+    - Wie viel kostet der Eintritt für Schüler zur Show Falling in Love?
+    - Falling in love Eintritt Schüler Kosten?
+    - Wieviel kostet ein Ticket für eine Studentin in der Kategorie 2+?
+    - Ich mache ein Fernstudium. Bekomme ich auch einen Rabatt?
+    - Können internationale Studenten auch Rabatte erhalten?
+- intent: ask_discount_berlin_welcome_card
+  examples: |
+    - {berlin_welcome_card_regex}
+    - Wie kann ich den Rabatt der Berlin Welcome Card bei der Buchung angeben?
+    - Mit der Berlin WelcomeCard soll es 25% Nachlass auf Tickets geben, für welche Tickets genau gilt das?
+    - Auf welche Tickets gibt es Rabatt mit der Berlin WellcomeCard?
+    - Hallo, mit der Berlin Card soll es Rabatt auf dei Tickets geben. Was sind Tickets der Preiskategorie WSL-2? 
+    - Bekomme ich einen günstigeren Preis für das Ticket, wenn ich die Berlin Welcome Card habe?
+    - Wie kann ich den Rabatt der Berlin Welcome Card bei der Buchung angeben?
+    - Bei visit Berlin kann man die Welcome Card erwerben. Damit sei ein Rabatt von 25 Prozent in ihrem Hause möglich. Kann dieser schon beim Erwerb in ihrem Ticket Shop eingesetzt werden? 
+    - Wie viel kostet das Ticket mit der Berlin Welcome Card?
+    - Welche Ermäßigungen gibt es für die Show "Falling in love" mit der Berlin Welcome Card?
+    - Kann ich mit der Berlin Welcome Card weniger für das Ticket zahlen?
+    - Ist das Ticket billiger, wenn ich die Berlin Welcome Card verwende?
+    - Ich würde gerne wissen, wie viel das Ticket mit der Berlin Welcome Card kostet.
+- intent: ask_discount_senior
+  examples: |
+    - {senior_regex}
+    - Gibt es Tickets für Rentner?
+    - Ich würde gerne  zwei Tickets buchen aber kann kein Rentner angeben 
+    - Wieviel kostet ein Ticket für eine Person ab 65 in der Kategorie VIP? 
+    - Gibt es spezielle Angebote für Personen ab 65 Jahren?
+    - Ermäßigungen für Rentner?
+    - Wie viel muss man als Senior für ein Ticket bezahlen?
+    - Ist es möglich, als ältere Person einen Sonderpreis zu erhalten?
+    - Gibt es eine Altersgrenze für Seniorenermäßigungen?
+    - Ab welchem Lebensjahr gilt man als Senior?
+- intent: ask_discount_young_ticket
+  examples: |
+    - {young_ticket_regex}
+    - Ich würde gerne Young Tickets kaufen
+    - Welche Rabatte gibt es für junge Menschen?
+    - Gibt es spezielle Preise für Jugendliche?
+    - Was zahle ich als unter 25-Jähriger?
+    - Hallo ich möchte ein Ticket kaufen für meine Tochter die 20 morgen wird.erhalte ich Young Sale?
+    - Was zahle ich als unter 25-Jähriger?
+    - Wie viel Rabatt bekomme ich als Person unter 25 Jahren?
+    - Kann man als junger Erwachsener bei euch Geld sparen?
+    - Für wen ist das Young Ticket?
+    - Was kostet das Young Ticket?
+    - Was ist das Young Ticket?
+- intent: ask_discount_unemployed
+  examples: |   
+    - {unemployed_regex}
+    - Bieten Sie Rabatte für Empfänger von Sozialhilfe?
+    - Welche Ermäßigungen bieten Sie für Arbeitslose an?
+    - Gibt es spezielle Konditionen für Arbeitslose?
+    - Bietet ihr Vergünstigungen für Menschen ohne Arbeit an?
+    - Wie kann ich als finanziell schwacher Kunde bei euch sparen?
+    - Sind eure Produkte auch für Menschen mit niedrigem Einkommen zugänglich?
+    - Kann ich als Empfänger von Sozialleistungen von besonderen Rabatten profitieren?
+    - Bietet ihr spezielle Angebote für Kunden mit begrenztem finanziellen Spielraum an?
+    - Wie kann ich als Mensch mit geringem Einkommen bei euch sparen?
+    - Gibt es Sonderaktionen für Menschen in finanziellen Nöten?
+    - Benötige ich als Sozialhilfeempfänger einen Nachweis, um Vergünstigungen zu erhalten?
+    - Sind eure Produkte auch für Kunden mit begrenztem Budget erschwinglich?
+    - Kann ich als finanziell schwacher Mensch von Rabatten profitieren?
+    - Brauche ich für eine Ermäßigung als Sozialempfänger einen Nachweis?
+    - Gibt es besondere Aktionen für Menschen in finanziellen Schwierigkeiten?
+    - Sind eure Produkte auch für Menschen mit kleinem Budget geeignet?
+    - Habt ihr Sonderangebote für Gäste ohne Arbeit?
+- intent: ask_discount_pfa
+  examples: |     
+    - {pfa_regex}
+    - Gibt es bei Ihnen noch die 5 Euro Tickets? Habe schon ganz lange keine Mail mit Terminvorschläge erhalten
+    - Wie kann ich mich online für Palast für Alle anmelden?
+    - #Palast Für Alle
+    - #PfA
+    - Ich kann mir Tickets zum Normalpreis nicht leisten
+    - Kannst du mir den Anmeldelink für Palast für Alle schicken?
+    - Wie melde ich mich für Palast für Alle an?
+    - Wo kann ich mich für Palast für Alle registrieren?
+    - Wo finde ich die Anmeldeinformationen für Palast für Alle?
+    - Gibt es eine Webseite, wo ich mich für Palast für Alle anmelden kann?
+    - Ist es möglich, sich für Palast für Alle anzumelden?
+    - Wie kann ich mich für das Programm Palast für Alle registrieren?
+    - Kann ich online bei Palast für Alle mitmachen?
+    - Wo kann ich Informationen zur Anmeldung für Palast für Alle finden?
+    - Wie kann ich mich bei Palast für Alle einschreiben?
+    - Kannst du mir sagen, wie ich bei Palast für Alle mitmachen kann?
+    - Gibt es eine Möglichkeit, mich für Palast für Alle anzumelden?
+    - Wie kann ich mich an der PFA Initiative beteiligen?
+    - Gibt es eine Internetseite für die PFA?
+    - Kannst du mir etwas über die PFA erzählen?
+    - Wo finde ich Informationen zur PFA?
+    - Wo bekomme ich die 5-euro-tickets?
+
+- intent: ask_guest_play
+  examples: |
+    - Tickets für Jugendweihe im Mai 2025
+    - dauer aschenputtel
+    - Wie lange geht die Vorstellung von Das Aschenputtel
+    - Gibt es noch Tickets für den Nussknacker am 21.12.2024?
+    - Gibt es eine Veranstaltung mit Margot Friedländer?
+    - 27.12. Drei haselnüsse für Aschenbrödel 
+    - Kann ich ein Ticket für Dieter Nuhr kaufen?
+    - Kann ich ein Ticket für ein Gastspiel kaufen?
+    - Kann ist beim Palast ein Ticket für Gastspiel kaufen?
+    - Karten Suzi Quatro
+    - Tickets für Steven Wilson
+    - Wo kriege ich Karten für This is The Greatest Show?
+    - Steven Wilson - The Overview Tour
+    - This is The Greatest Show - Tournee 2025
+    - “Best Of …” Glenn Miller Orchestra 2025
+    - Karten für Glenn Miller!
+    - Café del Mar ARIA
+    - Karten für The Harlem Gospel Singers 2025
+    - Ich möchte zu den The Harlem Gospel Singers 2025
+- intent: ask_serie
+  examples: |
+    - Gibt es eine Soap zu dem Palast?
+    - Was ist die Serie Der Palast?
+    - Wo kann ich die "Der Palast" Serie schauen?
+    - Gibt es eine zweite Staffel von der Palast?
+    - Was ist die Palast Serie?
+    - Gibt es eine Serie zum Friedrichstadt-Palast?
+    - Wer spielt in der Serie "Der Palast" mit?
+    - Wie viele Staffeln hat die Serie Der Palast?
+    - Kann ich die Serie Der Palast auf Netflix finden?
+    - Ist die Serie Der Palast auf Amazon Prime verfügbar?
+    - Wie wurde die Serie Der Palast bewertet?
+    - Gibt es eine neue Staffel für "Der Palast"?
+    - Wann wird die neue Staffel von Der Palast veröffentlicht?
+    - Kann man die Serie Der Palast auf DVD kaufen?
+    - Welche Schauspieler sind in Der Palast zu sehen?
+    - Hat die Serie Der Palast irgendwelche Auszeichnungen gewonnen?
+- intent: ask_gaultier
+  examples: |
+    - Wer hat die Kostüme für diese Show designt?
+    - Wer war für das Design der Kostüme in dieser Inszenierung verantwortlich?
+    - Wer hat das Kostümdesign für diese Aufführung kreiert?
+    - Kannst du mir sagen, wer die Kostüme für diese Produktion gestaltet hat?
+    - Wer ist der Designer der Kostüme in dieser Show?
+    - Wer hat das Kostüm- und Bühnendesign für diese Inszenierung entworfen?
+    - Wer war der kreative Kopf hinter dem Kostümdesign in dieser Show?
+    - Wer hat das Bühnen- und Kostümdesign für diese Inszenierung konzipiert?
+    - Kannst du mir sagen, wer für das Kostüm-Design in dieser Show verantwortlich war?
+    - Wer hat das Kostümdesign für diese Produktion entworfen?
+    - Wer war für das Design der Kostüme in dieser Aufführung zuständig?
+    - Kannst du mir den Namen des Kostümdesigners für diese Show nennen?
+    - Wer hat das Design für die Kostüme in dieser Show kreiert?
+    - Kannst du mir sagen, wer für das Design der Bühne und Kostüme verantwortlich war?
+    - Wer ist der künstlerische Leiter für das Design der Show?
+    - Wer war der Designer für die Kostüme in dieser Show?
+    - Wer hat die Kostüme für diese Show entworfen?
+    - Kannst du mir sagen, wer für die Gestaltung der Kostüme verantwortlich war?
+    - Wer ist der kreative Kopf hinter dem Design der Show?
+    - Gab es einen bestimmten Designer, der für die Kostüme zuständig war?
+    - Kannst du mir sagen, wer für das Design der Show verantwortlich ist?
+    - Wer ist der Design Direktor der Show?
+    - Hat Gaultier die Kostüme gemacht?
+    - Wer ist Jean Paul Gaultier?
+    - Von wem sind die Kostüme?
+    - Wer hat die Kostüme designt?
+
+- synonym: another_providers
+  examples: |
+    - Ticketmaster
+    - GetYourGuide
+    - Eventim
+    - Andere Verkaufsstelle
+    - Travelcircus
+    - Jochen Schweizer
+    - MyDays
+    - Musement
+    - Headout
+    - Civitatis
+    - Clevertours
+    - Ameropa
+- synonym: Grand Show
+  examples: |
+    - Grand Show
+    - Show
+    - Produktion
+    - Produkt
+- synonym: Rabatte
+  examples: |
+    - Rabatte
+    - Ermäßigung
+    - Ermäßigungen
+    - spezielle Preise
+    - ermäßigte Tickets
+    - Preisnachlässe
+    - Vergünstigungen
+- synonym: disable
+  examples: |
+    - [Schwerbehinderung](disable)
+    - [100% Schwerbehinderung](disable)
+    - [20% Schwerbehinderung](disable)
+    - [Schwerbeschädigt](disable)
+    - [Schwerbehindertenausweis](disable)
+    - [GdB](disable)
+    - [Personen mit GdB](disable)
+    - [Besucher mit Behinderung](disable)
+    - [Menschen mit GdB](disable)
+    - [Person mit Behinderung](disable)
+    - [Person mit GdB](disable)
+    - [Behinderung](disable)
+    - [Gäste mit GdB](disable)
+    - [Gäste mit Behinderung](disable)
+    - [schwerbehinderter Mensch](disable)

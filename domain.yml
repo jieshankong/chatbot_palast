@@ -1,0 +1,281 @@
+version: "3.1"
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - affirm_ticket
+  - deny_ticket
+  - nul_fallback
+  - ask_ticket_general
+  - ask_ticket_palast
+  - ask_ticket_another_providers
+  - ask_ticket_booking
+  - ask_ticket_rebooking
+  - ask_print_ticket
+  - ask_not_get_ticket
+  - ask_not_get_ticket_post
+  - ask_not_get_ticket_email
+  - ask_webshop
+  - ask_box_office
+  - ask_call_center
+  - ask_delay_pickup
+  - ask_group_ticket
+  - ask_ticket_shipping
+  - ask_buy_voucher
+  - ask_voucher_not_work
+  - ask_PK
+  - ask_Pricing
+  - ask_Premium
+  - ask_VIP
+  - ask_WSL
+  - ask_payment_bar
+  - ask_payment_ticketbox
+  - ask_payment_webshop
+  - ask_payment_callcenter
+  - ask_directions
+  - ask_audiodescription
+  - ask_accessibility
+  - ask_entry_time
+  - complain
+  - ask_cloakroom
+  - ask_parking
+  - ask_foodanddrink
+  - ask_backstage_tours
+  - ask_soundtracks
+  - ask_lost_found
+  - ask_hotel
+  - ask_induction_loop
+  - ask_program_book
+  - ask_dresscode
+  - show_spielzeit
+  - show_dauer
+  - ask_filming_during_show
+  - new_grand_show
+  - show_age_restriction
+  - check_events
+  - ask_discount
+  - ask_discount_adac
+  - ask_discount_disable
+  - ask_discount_student
+  - ask_discount_berlin_welcome_card
+  - ask_discount_pfa
+  - ask_discount_young_ticket
+  - ask_discount_senior
+  - ask_discount_unemployed
+  - ask_guest_play
+  - ask_serie
+  - ask_gaultier
+
+entities:
+  - show_name
+  - discount_type
+  - event_date
+
+slots:
+  request_type:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+
+  show_name:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: show_name
+
+  discount_type:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: discount_type
+
+  event_date:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: event_date
+
+responses:
+  utter_greet:
+    - text: "Willkommen am Palast! \nMein Name ist GUID·E. Ich bin Dein virtueller Palast Assistent, wie kann ich Dir heute behilflich sein?"
+  utter_goodbye:
+    - text: "Auf Wiedersehen! Einen schönen Tag!"
+  utter_default:
+    - text: "Tut mir leid, das habe ich nicht ganz verstanden. Kannst du deine Frage anders stellen?"
+  utter_help_offer:
+    - text: "Wie kann ich dir noch weiterhelfen?"
+
+  utter_ticket_general:
+    - text: "Hast du Tickets schon gekauft?"
+      buttons:
+          - title: "Ja. Ich habe schon."
+            payload: '/affirm_ticket'
+          - title: "Nein. Ich habe nicht."
+            payload: '/deny_ticket'
+  utter_ticket_booked_where:
+    - text: "Wo hast du die Tickets gekauft?"
+      buttons:
+          - title: "Tickets vom Palast"
+            payload: '/ask_ticket_palast'
+          - title: "Andere Anbieter"
+            payload: '/ask_ticket_another_providers'
+  utter_ticket_another_providers:
+    - text: "Leider kann ich nur bei Tickets weiterhelfen, welche direkt im Friedrichstadt-Palast gebucht wurden. Wende Dich mit Deiner Anfrage bitte direkt an die entsprechende Verkaufsstelle, bei welcher Du die Tickets gebucht hast."
+  utter_ticket_booked_palast:
+    - text: "Wie kann ich Dir bezüglich Deiner Tickets weiterhelfen?"
+      buttons:
+        - title: "Tickets drucken"
+          payload: '/ask_print_ticket'
+        - title: "Tickets nicht erhalten"
+          payload: '/ask_not_get_ticket'
+        - title: "Tickets umbuchen"
+          payload: '/ask_ticket_rebooking'
+  utter_print_ticket:
+    - text: "In der E-Mail zu Deiner Buchung befindet sich eine „Digitales Ticket“ PDF Datei. Du kannst diese ausdrucken oder auf Deinem Handy vorzeigen. Falls du die Tickets drucken möchtest, beachte bitte, dass jede Seite der „Digitales Ticket“ PDF Datei auf DIN A4 gedruckt sein muss. Es ist für den Einlass absolut in Ordnung, wenn mehrere Tickets auf einer DINA4 Seite sind. "
+  utter_not_get_ticket:
+    - text: "Es tut mir leid, das zu hören."
+      buttons:
+        - title: "Zustellung per Post"
+          payload: '/ask_not_get_ticket_post'
+        - title: "Ticket per Email"
+          payload: '/ask_not_get_ticket_email'
+  utter_not_get_ticket_email:
+    - text: "Bitte überprüfe Deinen Spam-Ordner, ob unsere E-Mail versehentlich dorthin geleitet wurde. Der Absender der E-Mail ist tickets@palast.berlin. \nWenn Deine Tickets nicht angekommen sind, kontaktiere uns gerne telefonisch unter der Rufnummer +49 30 2326 2326."
+  utter_not_get_ticket_post:
+    - text: "Der Postversand kann aufgrund eines erhöhten Lieferaufkommens bei der Deutschen Post bis zu 10 Werktage dauern. Wenn Deine Tickets innerhalb von diesen Zeitraum nicht angekommen sind, kontaktiere uns gerne telefonisch unter der Rufnummer +49 30 2326 2326."
+  utter_ticket_rebooking:
+    - text: "Alle bei uns gebuchten Tickets sind automatisch Flex-Tickets, dass heißt Du kannst diese bis 2 Stunden vor Veranstaltungsbeginn auf einen anderen Tag umbuchen oder in einen Wertgutschein tauschen. Die Umbuchung ist leider nicht online möglich."
+  utter_ticket_booking:
+    - text: "Du kannst die Tickets im Webshop, über die Tickethotline oder auch an der Theaterkasse kaufen."
+      buttons:
+        - title: "zum Webshop"
+          payload: '/ask_webshop'
+        - title: "über Theaterkasse"
+          payload: '/ask_box_office'
+        - title: "über Call Center"
+          payload: '/ask_call_center'
+  utter_ask_call_center:
+    - text: "Die Kolleginnen und Kollegen unserer Guest Happiness stehen Dir täglich von 09:00 Uhr bis 19:00 Uhr unter der Telefonnummer +49 30 2326 2326 zur Verfügung."
+  utter_ask_webshop:
+    - text: "Hier ist der Link zu unserem Ticketshop: [https://fsp-webshop.comfortticket.de/de/produktion/8a5109a1-dce3-41f0-947e-be3f942ef133/31]"
+  utter_ask_box_office:
+    - text: "Tickets für unsere Shows kannst Du täglich von 13:00 Uhr bis 18:30 Uhr an unserer Theaterkasse hier im Palast erwerben. Die Theaterkasse befindet sich 20m rechts vom Haupteingang auf dem Claire-Waldoff-Platz."
+  utter_delay_pickup:
+    - text: "Wir empfehlen eine Abholung Deiner Tickets bis zu einer Stunde vor Veranstaltungsbeginn. Unsere Theaterkasse hat täglich von 13:00 Uhr bis 18:30 Uhr geöffnet. Am Veranstaltungstag hat die Theaterkasse jedoch bis zum Veranstaltungsbeginn geöffnet. Die Theaterkasse befindet sich rechts vom Haupteingang (auf dem Claire-Waldoff-Platz)."
+  utter_group_ticket:
+    - text: "Für Gruppen ab 10 Personen und Schulgruppen bieten wir besondere Konditionen an. Deine Buchungsanfrage kannst Du gerne online erstellen und uns direkt zusenden. Hier Anfrage erstellen: [https://www.palast.berlin/preise-saalplan/#gruppenbesuch]"
+  utter_ticket_shipping:
+    - text: "Die Tickets können wir Dir nach der Buchung  kostenfrei per E-Mail als digitales Ticket oder per Post für 5,90 Euro Versandgebühr senden oder auch kostenfrei an der Theaterkasse zur Abholung hinterlegen. \nBitte beachte: Der Postversand kann aufgrund eines erhöhten Lieferaufkommens bei der Deutschen Post bis zu 10 Werktage dauern."
+
+  utter_buy_voucher:
+    - text: "Unsere Gutscheine sind 3 Jahre gültig und können für alle Produktionen des Friedrichstadt-Palasts eingelöst werden, jedoch nicht für Gastveranstaltungen. Leider können die Gutscheine nicht für das Catering verwendet werden. \nLeider ist derzeit nur das Layout FALLING | IN LOVE für unsere Gutscheine und Geschenkpakete verfügbar. Dieser Gutschein ist jedoch nicht an die Grand Show FALLING | IN LOVE gebunden. \nGutscheine können ganz bequem online, an unserer Theaterkasse oder bei unserer Hotline unter +49 30 2326 2326 gebucht werden. Online findest Du unsere Gutscheine hier[https://www.palast.berlin/shows-tickets/gutscheine/]."
+  utter_voucher_not_work:
+    - text: "Den Gutscheincode deines Wertgutscheins oder deines Rabattgutscheins kannst Du direkt im Warenkorb eingeben. \nUnsere Gutscheine sind generell 3 Jahre gültig und können jederzeit für alle Produktionen des Friedrichstadt-Palastes eingelöst werden. Sie gelten jedoch nicht für Gastveranstaltungen. \nSollte der Gutscheincode Deines Wertgutscheins oder Deines Rabattgutscheins nicht akzeptiert werden, kontaktiere uns bitte mit Deinem Gutscheincode."
+
+  utter_PK:
+    - text: "Die klassischen Preiskategorien 1+ bis 5 befinden sich im Parkett sowie Hochparkett und bieten aufgrund des atriumförmigen Saals eine gute Sicht auf die Bühne. Für Gäste, die das gesamte Bühnenspektakel im Blick lieben, empfehlen wir die Plätze im Hochparkett. \nEinstiegspreis ab 19,80 €."
+  utter_Pricing:
+    - text: "Am Palast verwenden wir ein dynamisches Preissystem, um die Veranstaltungen während der gesamten Spielzeit gleichmäßig auszulasten und damit eine stimmungsvolle Atmosphäre im Saal zu schaffen. \nDas bedeutet, dass der Ticketpreis und die verfügbaren Preiskategorien sich an der Nachfrage und dem Angebot des jeweiligen Veranstaltungstages orientieren. Viele Vorstellungen können wir daher günstiger anbieten als zuvor, es kann aber auch bei starker Nachfrage an beliebten Tagen kurzfristig zu höheren Preisen kommen. \nWir empfehlen daher frühestmöglich zu buchen, um den gewünschten Lieblingsplatz zu sichern. Die Nachfrage steigt bekanntlich immer an, je näher der Veranstaltungstag rückt."
+  utter_Premium:
+    - text: "Wer am liebsten direkt in der Mitte unsere Grand Show erleben möchte, ist mit der Kategorie Premium bestens beraten. Wer zudem gerne etwas weiter vorne im Saal die Bühnennähe genießen will, findet den persönlich besten Platz in der Kategorie Premium + (Reihe 4-9). \nPremium: Ab 99,90 €. \nPremium+: Ab 104,90 €"
+  utter_VIP:
+    - text: "Beste Sicht auf die Bühne mit extra hohem Sitzkomfort und extra Beinfreiheit, das sind unsere VIP-Plätze in Reihe 3 sowie 10. Den passenden Service bietet der eigene VIP-Zugang zu Garderobe und Bar. \nAb 134,90 €."
+  utter_WSL:
+    - text: "Exklusivität pur. Bis zu sechs Gäste begrüßen wir in dem abgetrennten Lounge-Bereich mit privatem Barservice. Von der Wall Sky Lounge aus genießen unsere Gäste einen spektakulären Von-oben-Blick auf das gesamte Geschehen im Saal und auf die Bühne. Durch den separaten Eingangsbereich mit Fahrstuhl gelangen unsere Gäste zur Lounge mit naheliegendem Waschraum. Ein Glas Champagner zur Begrüßung ist inklusive. \nAb 199,90 € [https://www.palast.berlin/shows-tickets/wall-sky-lounge/]"
+
+  utter_payment_bar:
+    - text: "An der Bar hast Du folgende Zahlungsmöglichkeiten: \n- Kreditkarte / EC-Karte \n- Bar \n- Mobiles bezahlen"
+  utter_payment_ticketbox:
+    - text: "An der Theaterkasse hast Du folgende Zahlungsmöglichkeiten: \n- Kreditkarte / EC-Karte \n- Bar"
+  utter_payment_webshop:
+    - text: "Im Webshop hast Du folgende Zahlungsmöglichkeiten: \n- Kreditkarte \n- SEPA Lastschrift \n- PayPal \n- SOFORT Überweisung \n- Amazon Pay"
+  utter_payment_callcenter:
+    - text: "Bei der telefonischen Bestellung hast Du folgende Zahlungsmöglichkeiten: \n- Kreditkarte \n- SEPA Lastschrift"
+
+  utter_directions:
+    - text: "Bahnhof Oranienburger Straße (S1, S2, S25, S26), fünf Minuten Fußweg \nBus: Linie 147 Friedrichstraße/Reinhardtstraße Linie 142 - Hannoversche Straße \nTram: Linien M1 und 12 U Oranienburger Tor, Linie M5 S Oranienburger Straße, fünf Minuten Fußweg \nU-Bahn Oranienburger Tor Anfahrt Plannen: [https://www.google.com/maps/place/Friedrichstadt-Palast/@52.5239332,13.3862461,17z/data=!3m2!4b1!5s0x47a851e9cd783143:0xf6bb0121001d74de!4m6!3m5!1s0x47a851e9d3a6064d:0x7bc238e01490d4!8m2!3d52.52393!4d13.388821!16s%2Fm%2F0bm8jn3?entry=ttu]"
+  utter_audiodescription:
+    - text: "Musik und Akustik des Saals wahrnehmen zu können. Im Vorfeld haben die Gäste die Möglichkeit ein Tastmodell der Bühne zu erleben. \nAudiodeskriptionsvorstellungen finden während unserer Spielzeit generell am 1. Freitag eines Monats und teilweise auch an ausgewählten Samstagen um 15:30 Uhr statt. \nKarten können telefonisch oder per WhatsApp reserviert werden."
+  utter_accessibility:
+    - text: "Der Palast verfügt generell über 4 Rollstuhlplätze im Saal (Preiskategorie 5). Diese sind links im Saal auf der Höhe der Reihe 3. Falls ein Umsetzen möglich ist, stehen nach Verfügbarkeit alle Sitzplätze der anderen Preiskategorien in Reihe 3 zur Verfügung. \nDer Friedrichstadt-Palast verfügt über einen barrierefreien Zugang über den Seiteneingang in der Johannisstraße. Im Palast selber können alle Ebenen des Foyers über einen Aufzug erreicht werden. Die  Reihe 3 und 18 im Parkett und die Reihe 4 im Hochparkett können komplett barrierefrei erreicht werden."
+  utter_entry_time:
+    - text: "Das Foyer öffnet eine Stunde vor Beginn der Vorstellung. Die Türen zum Theatersaal öffnen 30 Minuten vor dem Beginn der Vorstellung."
+  utter_complain:
+    - text: "Dass wir Dich nicht komplett begeistern konnten, bedauern wir sehr. Sende uns gerne Deine Rückmeldung per E-Mail. Die Kolleg:innen der Gästezufriedenheit werden Dich dann gerne kontaktieren."
+  utter_cloakroom:
+    - text: "Die Mitnahme von Garderobe und Gepäck in den Zuschauerraum ist nicht gestattet. \nDu kannst Mäntel, Jacken sowie Rucksäcke, Gepäck und Taschen ab einer Größe von 45x40x20 cm kostenfrei an unserer Garderobe abgeben."
+  utter_parking:
+    - text: "Du möchtest einen Parkplatz buchen? Kontaktiere uns gerne telefonisch unter +49 30 2326 2326 oder per E-Mail unter happiness@palast.berlin. Der Parkplatz am Haus kann dann für die Dauer der Veranstaltung genutzt werden. Weitere Parkmöglichkeiten sind hier zu sehen:[https://www.palast.berlin/wp-content/uploads/2023/09/2023-09_Parkhaeuser_DE.pdf]"
+  utter_foodanddrink:
+    - text: "Getränke und Snacks erhältst Du bei uns im Palast an unseren Bars, ob vor der Show oder in der Pause, das ist Dir überlassen. \nBitte beachte, dass es aus hygienischen Gründen und aufgrund der etwas engen Stuhlreihen nicht gestattet ist, Speisen und Getränke in den Theatersaal mitzunehmen. \nAn allen Bars kannst Du Dir am Veranstaltungstag Getränke & Snacks für die Pause vorbestellen. Leider ist eine Vorbestellung online oder telefonisch vor der Veranstaltung nicht möglich. \nDie Preise aller Getränke und Snacks findest du auf unserer Getränke- und Speisekarte. \nDas Restaurant La Diva hat derzeit aufgrund der Baumaßnahmen leider noch geschlossen."
+  utter_backstage_tours:
+    - text: "Leider bieten wir keine Führungen durch den Friedrichstadt-Palast an. \nDie Erfahrungen haben uns gelehrt, dass sich diese nur sehr schwerlich mit den Probenplänen und dem Hinterbühnen-Organisationsbereich vereinbaren lassen, weswegen wir von diesen grundsätzlich absehen. \nWeitere Infomationen [https://www.palast.berlin/backstage/]"
+  utter_soundtracks:
+    - text: "Die limitierten Darstellungsmöglichkeiten eines digitalen Abspielgerätes würden die Wirkung der Show so stark eingrenzen, dass wir uns bewusst gegen eine Bildaufzeichnung auf DVD oder andere digitale Aufnahmen entschieden haben. \nDu findest die Soundtracks unserer Grand Shows auf den gängigen Streaming-Plattformen wie Spotify, Amazon Music, Apple Music und iTunes."
+  utter_lost_found:
+    - text: "Wenn du etwas im Friedrichstadt-Palast verloren hast, kontaktiere bitte die netten Kolleg:innen der Guest Happiness per E-Mail unter palast@artis.ag."
+  utter_hotel:
+    - text: "Leider bieten wir derzeit keine Pakete für eine Ticketbuchung und Hotelübernachtung an. Leider bieten wir auch keine Pakete mit der Anreise per Bahn oder per Flugzeug an. Kontaktiere doch bitte für eine Beratung zu Hotels in der Nähe unsere Guest Happines per E-Mail happiness@palast.berlin oder telefonisch unter +49 30 2326 2326."
+  utter_induction_loop:
+    - text: "Eine Induktionsschleife kann hörbehinderten Gästen helfen, die Show auch akustisch mitzuerleben. Wir verfügen in unserem Saal über eine Induktionsanlage mit zwei Schleifen im Parkettbereich (Reihe 3 bis Reihe 12) – über die gesamte Breite des Saals. Damit Sie dn induktiv abgestrahlten Ton im Saal auch hören können, muss Ihr Hörgerät über eine Telefonspule verfügen und diese muss eingeschaltet sein."
+  utter_program_book:
+    - text: "Du kannst ein Programmheft zum Preis von 5 Euro direkt auf unserer Internetseite, telefonisch oder an der Theaterkasse erwerben. Das Programmheft können wir Dir nach der Buchung gerne für eine Gebühr von 5,90 Euro per Post zusenden. \nHier kaufen [https://fsp-webshop.comfortticket.de/de/kategorie/10] \nDigitagles Programmherft [https://programm.palast.berlin/?_gl=1*1ao5mnf*_gcl_au*MjEzMDM0MTAxMy4xNzM4ODMxMTc1*_ga*MTA4MzcxNzg0Ny4xNzMyMDAyMzk0*_ga_8RVWQCNVDB*MTczOTUzMDgxMC4yNzMuMS4xNzM5NTMzMjMxLjYwLjAuMA..]"
+  utter_dresscode:
+    - text: "Es gibt keinen Dresscode. Du darfst so kommen, wie Du Dich wohlfühlst. Ob in schicker Abendgarderobe oder bequemer Hose und Bluse, ist dabei Dir überlassen, aber bitte respektiere den besonderen Anlass. Jogginghose und Adiletten sind auch nicht angemessen."
+
+  utter_show_spielzeit:
+    - text: "Die {show_name} Grand Show läuft bis Anfang Juli 2025."
+  utter_ticket_offer:
+    - text: "Möchtest du dir noch ein Ticket sichern?"
+      buttons:
+        - title: "Ja"
+          payload: "/affirm"
+        - title: "Nein"
+          payload: "/deny"
+  utter_show_dauer:
+    - text: "Die Dauer unserer Grand Show beträgt 2,5 Stunden inklusive einer 25-minütigen Pause."
+  utter_filming_during_show:
+    - text: "Aufgrund verschiedener Urheberrechte für z.B. Lichtdesign, Kostüme oder Bühnenbild ist es nicht gestattet, Foto-, Video- oder Tonaufnahmen während der Vorstellung zu machen. Auch für unsere Darstellerinnen und Darsteller würden Blitzlichter und ähnlich auch eine nicht unerhebliche Störung darstellen. \nZur privaten Nutzung kannst Du aber gerne während des Schlussapplaus Bilder machen."
+  utter_new_grand_show:
+    - text: "Der Friedrichstadt Palast spielt noch bis zum 05. Juli 2025 die FALLING | IN LOVE Grand Show. \nAb dem Ab 24. September 2025 zeigen wir unsere neue BLINDED by DELIGHT Grand Show."
+  utter_show_age_restriction:
+    - text: "Das empfohlene Mindestalter für unsere Grand Shows liegt bei acht Jahren. Säuglinge und Kleinkinder haben keinen Einlass zur Grand Show. "
+
+  utter_ask_specific_discount:
+    - text: "Für welchen Ermäßigungstyp möchtest du Informationen?"
+  utter_discount_adac:
+    - text: "ADAC Mitglieder erhalten eine Ermäßigung von 10% für alle Tickets auf den normalen Ticketpreis für unsere Grand Shows in der Preiskategorie 1+ bis Preiskategorie 4."
+  utter_discount_disable:
+    - text: "Gästen mit Behinderung ab 50 bieten wir 20 % Rabatt für ein Ticket in den Preiskategorien 1+ bis 4 an. \nBei Kennzeichen B im Schwerbehindertenausweis ist nur eine Begleitperson in den Preiskategorien 1+ bis 5 kostenfrei. Leider kann diese Ermäßigung nicht online sondern nur an der Theaterkasse oder telefonisch gebucht werden. "
+  utter_discount_student:
+    - text: "Für Kinder und Jugendliche bis 17 Jahre, Schüler:innen und Student:innen und Auszubildene bieten wir 20 % Rabatt in den Preiskategorien 1+ bis 4 an. \nIm Warenkorb kannst Du ganz einfach die Preiskategorie Schüler:in Student:in auswählen. Natürlich kannst Du die Ermäßigung auch an der Theaterkasse oder über die Tickethotline buchen.
+Bitte halte dann am Eingang einen entsprechenden Nachweis bereit."
+  utter_discount_berlin_welcome_card:
+    - text: "Inhaber der Berlin WelcomeCard erhalten eine Ermäßigung von 25% auf den normalen Ticketpreis. Die Ermäßigung ist gültig für ein Ticket in den Kategorien Wall Sky Lounge bis PK 2 und die Vorstellung muss im Gültigkeitszeitraum der Berlin WelcomeCard liegen. Die Preiskategorien 3 - 5 können für die Ermäßigung leider nicht genutzt werden. \nDie Tickets mit der Ermäßigung für Inhaber der Berlin WelcomeCard können nur an der Theaterkasse oder telefonisch gebucht werden."
+  utter_discount_pfa:
+    - text: "Das Angebot Palast für Alle richtet sich an Menschen, die sich kulturelle Veranstaltungen normalerweise nicht leisten können und keinen Berechtigungsnachweis für sozial Benachteiligte besitzen. Mit der Initiative Palast für Alle möchten wir  allen Gästen die Möglichkeit bieten unsere Grand Show oder Young Show,  unabhängig von ihrer finanziellen Lage, anzusehen. Wir glauben an das Gute im Menschen, daher benötigen wir auch keinen Nachweis oder ähnliches. Wir senden regelmäßig Terminvorschläge, an den Du die Möglichkeit hast Tickets für 5 Euro erwerben. \nWenn Du die E-Mail mit den Terminvorschlägen erhalten hast, kanns Du die  Tickets telefonisch erwerben. Hier registrieren! [https://www.palast.berlin/shows-tickets/ermaessigungen/fuer-alle/]"
+  utter_discount_young_ticket:
+    - text: "Für alle die noch nicht das 25. Lebensjahr vollendet haben  gibt es für unsere FALLING | IN LOVE Grand Show unser Young Ticket für 25,00€ pro Ticket. Das Young Ticket ist nur gültig für Plätze in den ersten beiden Reihen im Parkett in den Preiskategorien 3 und 4. \nDas Young Ticket kannst Du nicht online sondern nur telefonisch oder an unserer Theaterkasse kaufen. \nBitte halte einen entsprechenden Nachweis bereit."
+  utter_discount_senior:
+    - text: "Für Gäste ab 65 Jahren bieten wir 10 % Rabatt in den Preiskategorien 1+ bis 4 an. \nIm Warenkorb kannst du ganz einfach die Preiskategorie Gäste ab 65 Jahre auswählen, indem Du auf das Wort Normalpreis klickst. Natürlich kannst Du die Ermäßigung auch an der Theaterkasse oder über die Tickethotline buchen. Bitte halte am Eingang einen entsprechenden Nachweis bereit. \nBitte beachte: Tickets für Schüler oder Studenten oder Gäste ab 65 Jahren sind nicht gültig und gelten nicht für dein Einlass für Gäste mit einem Grad der Behinderung und müssen umgebucht werden."
+  utter_discount_unemployed:
+    - text: "Für Erwerbslose und Sozialhilfeempfänger bieten wir 20 % Rabatt in den Preiskategorien 1+ bis 4 an. \nDein Ticket kannst Du telefonisch oder bei uns an der Theaterkasse kaufen.  Eine Buchung online mit dieser Ermäßigung ist leider nicht möglich. Bitte halte einen entsprechenden Nachweis bereit."
+
+  utter_guest_play:
+    - text: "Die Veranstaltung ist ein Gastspiel im Palast. Daher können über uns für diese leider keine Tickets gebucht werden und wir wissen auch nicht, ob es noch Tickets für die Veranstaltung gibt oder ab wann die Tickets in den Verkauf gehen werden. Wir empfehlen einmal bei Eventim oder einer externen Theaterkasse nachzufragen. Überblick der Gastspiele [https://www.palast.berlin/gastspiele/]"
+  utter_serie:
+    - text: "Nach dem großen Erfolg der ersten Staffel feiert die preisgekrönte Serie DER PALAST ihr mit Spannung erwartetes Comeback. Im Mittelpunkt steht erneut unser ikonischer Friedrichstadt-Palast, der nicht nur als eindrucksvolle Kulisse dient, sondern in der Serie als „Las Vegas des Ostens“ erstrahlt. Die zweite Staffel versetzt uns ins Jahr 1990, unmittelbar nach dem Mauerfall. Während Berlin als Stadt voller neuer Möglichkeiten erwacht, steht das Ensemble des Palasts vor großen Herausforderungen. Unter der Leitung von Ballettdirektorin Regina Feldmann (Jeanette Hain) kämpfen die Künstler:innen mit leeren Publikumsreihen und einer ungewissen Zukunft. \nIm Zentrum der Geschichte stehen die Tänzer:innen Luise (Lary Müller), Karla (Taynara Silva-Wolf) und Lukas (Lukas Brandl), die sich nicht nur auf der Bühne beweisen müssen, sondern auch mit den Veränderungen in ihrem Leben umgehen. \nDie Fortsetzung entstand unter der kreativen Leitung von Uli Edel und Rodica Doehnert und ist eine Produktion von Constantin Television in Kooperation mit dem ZDF. \nSchau Dir die neue Staffel in der ZDF Mediathek an! Auch die 1. Staffel ist wieder in der ZDF-Mediathek verfügbar. Beide Staffeln sind thematisch unabhängig voneinander."
+  utter_gaultier:
+    - text: "Über allem in der neuen Grand Show schwebt die geniale Handschrift des Pariser Stardesigners Jean Paul GAULTIER. Schon 2016 entwarf er für die gefeierte THE ONE Grand Show die Kostüme. Diesmal ist sein kreatives Schaffen tiefer und umfassender: Als Visuell Design Direktor verleiht er dem Ganzen seinen unverkennbaren visionären Style & Touch. Als Kurator holt er zudem aufstrebende Fashion Designer:innen an seine Seite, deren Arbeiten er liebt. \nJean Paul GAULTIER sagt: \nIch bin höchst erfreut, erneut mit dem Palast zu arbeiten und FALLING | IN LOVE zu kuratieren. Zusammen mit dem Palast-Team kann ich meiner Kreativität diesmal deutlich mehr Freiraum geben und mit neuen Talenten wie Fecal Matter oder Sasha Frolova arbeiten. Ich kann es kaum erwarten, bis das Publikum dieses neue Abenteuer genießen kann."
+
+
+actions:
+  - action_default_fallback
+  - action_handle_ticket_booked_palast
+  - action_fetch_current_show_name
+  - action_provide_dynamic_discount
+  - action_check_events
